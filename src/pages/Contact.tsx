@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import HeroImg from "@/assets/Hero.png";
+import HeroImg from "@/assets/hero.png";
 import ContactSection from "@/components/Contact/contactSection";
 
 const Contact = () => {
