@@ -1,11 +1,11 @@
 import React from 'react';
 
 // Import your local images from assets
-import ProteinPuff from '@/assets/ProteinPuff.png';
+import ProteinPuff from '@/assets/proteinpuff.png';
 import PopCorn from '@/assets/PopCorn.png';
-import CrunchyMakhana from '@/assets/CrunchyMakhana.png';
+import CrunchyMakhana from '@/assets/crunchymakhana.png';
 import Makhana from '@/assets/Makhana.png';
-import PremiumMakhana from '@/assets/PremiumMakhana.png';
+import PremiumMakhana from '@/assets/premiummakhana.png';
 
 import HighProteinIcon from "@/assets/proteinLogo.png";
 import LowCaloriesIcon from "@/assets/calourieLogo.png";
