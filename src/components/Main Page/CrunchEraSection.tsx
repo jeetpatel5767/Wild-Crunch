@@ -2,7 +2,7 @@ import React from 'react';
 
 // Import your local images from assets
 import ProteinPuff from '@/assets/proteinpuff.png';
-import PopCorn from '@/assets/PopCorn.png';
+import PopCorn from '@/assets/popcorn.png';
 import CrunchyMakhana from '@/assets/crunchymakhana.png';
 import Makhana from '@/assets/Makhana.png';
 import PremiumMakhana from '@/assets/premiummakhana.png';
