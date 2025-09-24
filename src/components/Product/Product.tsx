@@ -41,7 +41,7 @@ const filteredProducts = products.filter((product) => {
 
   return (
     <div className="min-h-screen bg-[#F8F7E5]">
-      <div className="container mx-auto px-4 py-8 flex gap-8">
+      <div className="container mx-auto px-12 py-8 flex gap-8">
         {/* Sidebar */}
         <aside className="w-1/4 hidden md:block sticky top-20 h-fit">
           <h2 className="font-suez text-3xl text-[#212121] mb-6">SHOP ALL</h2>
@@ -65,7 +65,7 @@ const filteredProducts = products.filter((product) => {
         {/* Main content */}
         <main className="flex-1">
           {/* Search bar */}
-          <div className="sticky top-20 bg-background z-10 pb-16 sm:pb-10">
+          <div className="sticky top-20 z-10 pb-16 sm:pb-10">
             <div className="relative">
               <Search
                 className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#C06441]"

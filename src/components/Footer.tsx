@@ -2,7 +2,6 @@ import React from "react";
 import LogoWC from "../assets/LogoWC.png";
 import { Instagram, Linkedin, Twitter } from "lucide-react";
 
-
 const Footer = () => {
   // Generate a smooth random ECG/heartbeat-like path
   const generateRandomPath = (width = 1200, segments = 80) => {
@@ -49,7 +48,11 @@ const Footer = () => {
           {/* Logo (tilted) */}
           <div className="flex justify-center lg:justify-center items-center">
             <div className="transform -rotate-[20deg]">
-              <img src={LogoWC} alt="Wild Crunch Logo" className="h-36 w-auto" />
+              <img
+                src={LogoWC}
+                alt="Wild Crunch Logo"
+                className="h-36 w-auto"
+              />
             </div>
           </div>
 
@@ -58,18 +61,23 @@ const Footer = () => {
             <h3 className="font-jost font-bold text-[#275AF3] text-lg mb-4">
               EXPLORE
             </h3>
-<ul className="space-y-3">
-  <li>
-    <a href="/our-story" className="text-[#466DDF] font-jost">Our Story</a>
-  </li>
-  <li>
-    <a href="/dealerships" className="text-[#466DDF] font-jost">Dealership</a>
-  </li>
-  <li>
-    <a href="/contact" className="text-[#466DDF] font-jost">Contact</a>
-  </li>
-</ul>
-
+            <ul className="space-y-3">
+              <li>
+                <a href="/our-story" className="text-[#466DDF] font-jost">
+                  Our Story
+                </a>
+              </li>
+              <li>
+                <a href="/dealerships" className="text-[#466DDF] font-jost">
+                  Dealership
+                </a>
+              </li>
+              <li>
+                <a href="/contact" className="text-[#466DDF] font-jost">
+                  Contact
+                </a>
+              </li>
+            </ul>
           </div>
 
           {/* Learn */}
@@ -77,14 +85,33 @@ const Footer = () => {
             <h3 className="font-jost font-bold text-[#275AF3] text-lg mb-4">
               LEARN
             </h3>
-<ul className="space-y-2">
-  <li><a href="/" className="text-[#466DDF] font-jost">Home</a></li>
-  <li><a href="/products" className="text-[#466DDF] font-jost">Product</a></li>
-  <li><a href="/testimonial" className="text-[#466DDF] font-jost">Testimonial</a></li>
-  <li><a href="/cart" className="text-[#466DDF] font-jost">Cart</a></li>
-  <li><a href="/wishlist" className="text-[#466DDF] font-jost">WishList</a></li>
-</ul>
-
+            <ul className="space-y-2">
+              <li>
+                <a href="/" className="text-[#466DDF] font-jost">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="/products" className="text-[#466DDF] font-jost">
+                  Product
+                </a>
+              </li>
+              <li>
+                <a href="/testimonial" className="text-[#466DDF] font-jost">
+                  Testimonial
+                </a>
+              </li>
+              <li>
+                <a href="/cart" className="text-[#466DDF] font-jost">
+                  Cart
+                </a>
+              </li>
+              <li>
+                <a href="/wishlist" className="text-[#466DDF] font-jost">
+                  WishList
+                </a>
+              </li>
+            </ul>
           </div>
 
           {/* Location */}
@@ -136,9 +163,14 @@ const Footer = () => {
             <p className="text-sm font-jost">
               © {new Date().getFullYear()} WildCrunch - All Rights Reserved
             </p>
-            <p className="text-sm font-jost mt-3 md:mt-0">
+            <a
+              href="https://codelix.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-jost mt-3 md:mt-0 hover:underline"
+            >
               Powered By Codelix IT Solutions Pvt. Ltd.
-            </p>
+            </a>
           </div>
         </div>
       </div>
@@ -246,9 +278,14 @@ const Footer = () => {
           <p className="text-sm font-jost">
             © {new Date().getFullYear()} WildCrunch - All Rights Reserved
           </p>
-          <p className="text-sm font-jost mt-2">
+          <a
+            href="https://codelix.in"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-jost mt-3 md:mt-0 hover:underline"
+          >
             Powered By Codelix IT Solutions Pvt. Ltd.
-          </p>
+          </a>
         </div>
       </div>
     </footer>

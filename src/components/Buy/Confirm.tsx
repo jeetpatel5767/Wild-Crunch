@@ -50,27 +50,39 @@ const ConfirmPage = () => {
 
       {/* Progress Steps */}
       <div className="container mx-auto px-4 py-8">
-                        <div className="flex items-center justify-center mb-8">
-                          <div className="flex items-center">
-                            {steps.map((step, index) => (
-                              <React.Fragment key={step.name}>
-                                <div className="flex flex-col items-center">
-                                  <div className={`w-4 h-4 rounded-full ${
-                                    step.active 
-                                      ? 'bg-black' 
-                                      : step.completed
-                                      ? 'bg-black'
-                                      : 'bg-gray-300'
-                                  }`}></div>
-                                  <span className="text-sm mt-2 font-medium">{step.name}</span>
-                                </div>
-                                {index < steps.length - 1 && (
-                                  <div className="w-16 sm:w-48 h-px bg-black  mt-[-20px]"></div>
-                                )}
-                              </React.Fragment>
-                            ))}
-                          </div>
-                        </div>
+<div className="flex items-center justify-center mb-8 relative w-full">
+  {/* Gray background line */}
+  <div className="absolute top-2 left-0 right-0 h-0.5 bg-gray-300 z-0"></div>
+
+  {/* Black progress line */}
+  <div
+    className="absolute top-2 left-0 h-0.5 bg-black transition-all duration-500 z-0"
+    style={{
+      width: `${(steps.findIndex(step => step.active) / (steps.length - 1)) * 100}%`,
+    }}
+  ></div>
+
+  {/* Steps */}
+  <div className="flex items-center justify-between w-full max-w-3xl relative z-10">
+    {steps.map((step, index) => (
+      <div key={step.name} className="flex flex-col items-center">
+        {/* Circle */}
+        <div
+          className={`w-4 h-4 rounded-full border-2 border-white ${
+            step.active
+              ? "bg-black"
+              : step.completed
+              ? "bg-black"
+              : "bg-gray-300"
+          }`}
+        ></div>
+        {/* Label */}
+        <span className="text-sm mt-2 font-medium">{step.name}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
 
         {/* Main Content */}
         <div className="lg:grid lg:grid-cols-12 lg:gap-8">

@@ -24,35 +24,16 @@ const Rightcrunch = () => {
 
       {/* Products Section */}
       <div className="w-full">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 px-6 lg:px-0 justify-items-center lg:justify-items-stretch">
-          <div className="w-full">
-            <img
-              src={Crunch1}
-              alt="Crunch 1"
-              className="w-full h-auto object-cover"
-            />
-          </div>
-          <div className="w-full">
-            <img
-              src={Crunch2}
-              alt="Crunch 2"
-              className="w-full h-auto object-cover"
-            />
-          </div>
-          <div className="w-full">
-            <img
-              src={Crunch3}
-              alt="Crunch 3"
-              className="w-full h-auto object-cover"
-            />
-          </div>
-          <div className="w-full">
-            <img
-              src={Crunch4}
-              alt="Crunch 4"
-              className="w-full h-auto object-cover"
-            />
-          </div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 px-8 lg:px-16 justify-items-center">
+          {[Crunch1, Crunch2, Crunch3, Crunch4].map((img, idx) => (
+            <div key={idx} className="w-full flex justify-center">
+              <img
+                src={img}
+                alt={`Crunch ${idx + 1}`}
+                className="w-[100%] h-auto object-contain rounded-lg"
+              />
+            </div>
+          ))}
         </div>
       </div>
     </div>

@@ -2,9 +2,9 @@ import LogoWC from "@/assets/LogoWC.png";
 
 const WelcomeSection = () => {
   return (
-    <section className="py-20 bg-background overflow-hidden">
+    <section className="py-20 bg-[#F8F7E5] overflow-hidden">
       {/* Infinite Loop Text */}
-      <div className="w-full overflow-hidden  py-3 bg-background">
+      <div className="w-full overflow-hidden  py-3 ">
         <div className="flex animate-marquee whitespace-nowrap">
           {Array(10)
             .fill("BETTER FOR YOU,")

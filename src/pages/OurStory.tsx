@@ -16,7 +16,7 @@ import FlavorIcon from "@/assets/deliciousLogo.png";
 
 const OurStory = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#F8F7E5]">
       <Header/>
       <Hero/>
 
