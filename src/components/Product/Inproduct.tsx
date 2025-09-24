@@ -1,61 +1,361 @@
-import { useParams, useLocation, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
-import { ArrowLeft } from "lucide-react";
+import { useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { Heart, ArrowLeft } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import products from "@/data/product";
+import Review from "./Review.tsx";
+import Others from "./Others.tsx";
+import FooterForInProduct from "./FooterForInProduct.tsx";
+import Header from "@/components/Header";
 
-
-export default function InProduct() {
+const InProduct = () => {
   const { id } = useParams();
-  const { state } = useLocation();
   const navigate = useNavigate();
 
-  let product = state?.product;
-  if (!product) return <p>No product found</p>;
+  // Find the product by ID
+  const selectedProduct = products.find((product) => product.id === id);
 
-  if (!product) return <p>No product found</p>;
+  useEffect(() => {
+    if (selectedProduct) {
+      document.body.style.overflow = "hidden"; // disable page scroll
+    } else {
+      document.body.style.overflow = "auto"; // restore scroll
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [selectedProduct]);
+
+  const handleClose = () => {
+    navigate("/products");
+  };
+
+  // If product not found, redirect to products page
+  if (!selectedProduct) {
+    navigate("/products");
+    return null;
+  }
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.2 }} // slight initial fade
-      className="w-screen h-screen flex flex-col items-center justify-center relative"
-    >
-      {/* Delayed background layer */}
+    <AnimatePresence mode="wait">
       <motion.div
+        key={`modal-${selectedProduct.id}`}
+        className="fixed inset-0 z-50 overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.3, delay: 0.1 }} // BG delay
-        className="absolute top-0 left-0 w-full h-full"
-        style={{ backgroundColor: product.bgColor, zIndex: 0 }}
-      />
-
-      {/* Back button */}
-      <button
-        onClick={() => navigate(-1)}
-        className="absolute top-6 left-6 bg-white/20 p-2 rounded-full z-20"
+        exit={{ opacity: 0 }}
       >
-        <ArrowLeft />
-      </button>
+        {/* Header */}
+        <Header />
 
-      {/* Animated Product Image */}
-      <motion.img
-        layoutId={`product-image-${product.id}`}
-        src={product.imageSrc}
-        alt={product.name}
-        className="w-[250px] sm:w-[300px] mb-6 z-10"
-      />
+        {/* Background with grain + color fade */}
+        <motion.div
+          className="absolute top-[90px] left-0 right-0 bottom-0 z-0"
+          style={{
+            backgroundColor: selectedProduct.bgColor,
+            backgroundImage:
+              "radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px)",
+            backgroundSize: "20px 20px",
+          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          onClick={handleClose}
+        />
 
-      {/* Fade-in Details with delay */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.4 }} // details appear after image+BG
-        className="flex flex-col items-center text-white z-20"
-      >
-        <h1 className="text-4xl font-suez mb-2">{product.name}</h1>
-        <p className="font-jost text-lg">{product.weight}</p>
-        <p className="text-2xl font-suez mt-2">{product.price}</p>
+        {/* Back button */}
+        <button
+          onClick={handleClose}
+          className="absolute top-24 left-4 bg-white/20 p-2 rounded-full z-[9999]"
+        >
+          <ArrowLeft />
+        </button>
+
+        {/* Modal content */}
+        <div className="relative w-full h-full flex flex-col items-center justify-start px-4 pt-20 z-50 overflow-y-auto overflow-x-hidden hide-scrollbar">
+          <div className="w-full max-w-[1300px] mx-auto">
+            {/* Mobile Layout */}
+            <div className="block lg:hidden">
+              {/* Product Title */}
+              <motion.div
+                className="text-left mb-6"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.5 }}
+              >
+                <h3 className="font-suez text-sm mb-1 text-white">
+                  DISCOVER OUR MAKHANA
+                </h3>
+                <p className="font-suez text-2xl text-black mb-2">
+                  {selectedProduct.name}
+                </p>
+                <div className="flex items-center gap-4 text-white">
+                  <p className="font-suez text-base">
+                    {selectedProduct.weight}
+                  </p>
+                  <p className="font-suez text-lg">
+                    {selectedProduct.price}
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* Product Image and Features Row */}
+              <div className="flex gap-6 mb-8">
+                {/* Product Image */}
+                <motion.div
+                  className="flex-shrink-0"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.6, duration: 0.5 }}
+                >
+                  <div className="rounded-[40px] border-dashed border-2 border-white p-4">
+                    <div className="rounded-[40px] border border-white p-3 flex justify-center items-center">
+                      <img
+                        src={selectedProduct.imageSrc}
+                        alt={selectedProduct.name}
+                        className="w-[160px] h-auto"
+                      />
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Features and Action Buttons */}
+                <motion.div
+                  className="flex-1"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7, duration: 0.5 }}
+                >
+                  {/* Features */}
+                  <div className="space-y-3 mb-6">
+                    <div className="text-white font-suez text-sm py-2 border-b border-dashed border-white">
+                      <span>Made with Multigrams</span>
+                    </div>
+                    <div className="text-white font-suez text-sm py-2 border-b border-dashed border-white">
+                      <span>Fried Not Baked</span>
+                    </div>
+                    <div className="text-white font-suez text-sm py-2 border-b border-dashed border-white">
+                      <span>High Protein</span>
+                    </div>
+                    <div className="text-white font-suez text-sm py-2 border-b border-dashed border-white">
+                      <span>Low In Cholesterol</span>
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <motion.div
+                    className="space-y-3"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.8, duration: 0.5 }}
+                  >
+                    <div className="flex items-center gap-2">
+                      <div className="flex items-center border border-white rounded-full px-3 py-1 bg-transparent">
+                        <button className="px-1 text-white font-suez text-sm">-</button>
+                        <span className="px-2 text-white font-suez text-sm">1</span>
+                        <button className="px-1 text-white font-suez text-sm">+</button>
+                      </div>
+                      <button className="border border-white rounded-full p-1 bg-transparent">
+                        <Heart size={16} className="text-white" />
+                      </button>
+                    </div>
+                    <button className="w-full bg-[#F1B213] text-white py-2 rounded-full font-jost font-semibold text-sm">
+                      ADD TO CART
+                    </button>
+                    <p className="text-white text-xs text-center">3000+ Happy Customers</p>
+                  </motion.div>
+                </motion.div>
+              </div>
+
+              {/* Ingredients */}
+              <motion.div
+                className="mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.0, duration: 0.5 }}
+              >
+                <h3 className="font-suez text-lg mb-3 text-white">
+                  INGREDIENTS
+                </h3>
+                <p className="font-suez text-sm text-black leading-relaxed">
+                  Makhana (Fox Nuts), Rice Bran Oil, Habanero Chili Powder, Red Chili Flakes,<br />
+                  Rock Salt, Black Pepper, Natural Spices
+                </p>
+              </motion.div>
+
+              {/* Description */}
+              <motion.div
+                className="mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.1, duration: 0.5 }}
+              >
+                <h3 className="font-suez text-lg mb-3 text-black">
+                  Taste the Lightness in Every Bite of Makhana.
+                </h3>
+                <p className="font-jost text-sm text-white leading-relaxed">
+                  Craving something light yet flavorful? No worries. Just grab a handful of our perfectly roasted makhana, seasoned to hit every taste bud with the right crunch and spice. Pure, wholesome, and guilt-free. Damn tasty. It's the little joys of snacking, made better…
+                </p>
+              </motion.div>
+            </div>
+
+
+            {/* Desktop Layout */}
+            <div className="hidden lg:flex flex-col lg:flex-row gap-8 overflow-hidden">
+              {/* Left Column */}
+              <motion.div
+                className="flex-1 flex flex-col justify-between text-white min-w-0"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  delay: 0.5,
+                  duration: 0.6,
+                  ease: "easeOut",
+                }}
+              >
+                <div>
+                  <motion.h2
+                    className="font-suez text-xl mb-4 text-black break-words"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6, duration: 0.5 }}
+                  >
+                    Taste the Lightness in Every Bite of Makhana.
+                  </motion.h2>
+                  <motion.p
+                    className="font-jost text-base text-white"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.7, duration: 0.5 }}
+                  >
+                    Craving something light yet flavorful? No worries.
+                    Just grab a handful of our perfectly roasted makhana,
+                    seasoned to hit every taste bud with the right crunch
+                    and spice. Pure, wholesome, and guilt-free. Damn
+                    tasty. It's the little joys of snacking, made better…
+                  </motion.p>
+                </div>
+                <motion.div
+                  className="text-right mt-8"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8, duration: 0.5 }}
+                >
+                  <h3 className="font-suez text-xl mb-2 text-white">
+                    INGREDIENTS
+                  </h3>
+                  <p className="font-suez text-base text-black break-words">
+                    Makhana (Fox Nuts), Rice Bran Oil, Habanero Chili Powder, Red Chili Flakes, Rock Salt, Black Pepper, Natural Spices
+                  </p>
+                </motion.div>
+              </motion.div>
+
+              {/* Middle Column (Product Image) */}
+              <div className="flex-1 flex justify-center items-center relative min-w-0">
+                <motion.div
+                  key={`modal-image-container-${selectedProduct.id}`}
+                  layoutId={`product-image-container-${selectedProduct.id}`}
+                  className="rounded-[80px] border-dashed border-2 border-white p-6"
+                >
+                  <div className="rounded-[80px] border border-white p-4 flex justify-center items-center">
+                    <motion.img
+                      key={`modal-image-${selectedProduct.id}`}
+                      layoutId={`product-image-${selectedProduct.id}`}
+                      src={selectedProduct.imageSrc}
+                      alt={selectedProduct.name}
+                      className="w-[250px] sm:w-[300px] max-w-full h-auto"
+                    />
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Right Column */}
+              <motion.div
+                className="flex-1 flex flex-col justify-between text-white min-w-0"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  delay: 0.5,
+                  duration: 0.6,
+                  ease: "easeOut",
+                }}
+              >
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6, duration: 0.5 }}
+                >
+                  <h3 className="font-suez text-3xl mb-2 text-white break-words">
+                    Discover our Makhana
+                  </h3>
+                  <p className="font-suez text-3xl xl:text-5xl text-[#212121] break-words">
+                    {selectedProduct.name}
+                  </p>
+                  <div className="flex items-center gap-4 text-white flex-wrap">
+                    <p className="font-suez text-lg">
+                      {selectedProduct.weight}
+                    </p>
+                    <p className="font-suez text-xl">
+                      {selectedProduct.price}
+                    </p>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  className="mt-8 flex flex-col gap-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7, duration: 0.5 }}
+                >
+                  <div className="border-t border-dashed border-white"></div>
+                  <div className="flex items-center justify-start text-white font-suez gap-4 pl-4 flex-wrap">
+                    <span>Made with Multigrams</span>
+                    <span className="border-l border-dashed border-white h-8 hidden sm:block"></span>
+                    <span>Fried Not Baked</span>
+                  </div>
+                  <div className="border-t border-dashed border-white"></div>
+                  <div className="flex items-center justify-start text-white font-suez gap-4 pl-4 flex-wrap">
+                    <span className="mr-[75px]">High Protein</span>
+                    <span className="border-l border-dashed border-white h-8 hidden sm:block"></span>
+                    <span>Low in Cholesterol</span>
+                  </div>
+                  <div className="border-t border-dashed border-white"></div>
+                </motion.div>
+
+                <motion.div
+                  className="flex items-center mt-8 gap-4 flex-wrap"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8, duration: 0.5 }}
+                >
+                  <div className="flex items-center border border-white rounded-full px-6 py-3 bg-transparent">
+                    <button className="px-3 text-white font-suez">
+                      -
+                    </button>
+                    <span className="px-4 text-white font-suez">
+                      1
+                    </span>
+                    <button className="px-2 text-white font-suez">
+                      +
+                    </button>
+                  </div>
+                  <button className="border border-white rounded-full p-3 bg-transparent">
+                    <Heart size={20} className="text-white" />
+                  </button>
+                  <button className="bg-[#F1B213] text-white px-6 py-3 rounded-full font-jost whitespace-nowrap">
+                    ADD TO CART
+                  </button>
+                </motion.div>
+              </motion.div>
+            </div>
+          </div>
+          <Review />
+          <Others /> 
+          <FooterForInProduct />
+        </div>
       </motion.div>
-    </motion.div>
+    </AnimatePresence>
   );
-}
+};
+
+export default InProduct;

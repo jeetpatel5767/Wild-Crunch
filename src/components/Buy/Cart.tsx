@@ -58,27 +58,27 @@ const CartPage = () => {
 
       {/* Progress Steps */}
       <div className="container mx-auto px-4 py-8">
-        <div className="flex items-center justify-center mb-8">
-          <div className="flex items-center space-x-8">
-            {steps.map((step, index) => (
-              <div key={step.name} className="flex items-center">
-                <div className="flex flex-col items-center">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                    step.active 
-                      ? 'bg-black text-white' 
-                      : 'bg-gray-300 text-gray-500'
-                  }`}>
-                    <div className="w-3 h-3 rounded-full bg-current"></div>
-                  </div>
-                  <span className="text-sm mt-2 font-medium">{step.name}</span>
-                </div>
-                {index < steps.length - 1 && (
-                  <div className="w-16 h-0.5 bg-gray-300 mx-4 mt-[-20px]"></div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
+                        <div className="flex items-center justify-center mb-8">
+                          <div className="flex items-center">
+                            {steps.map((step, index) => (
+                              <React.Fragment key={step.name}>
+                                <div className="flex flex-col items-center">
+                                  <div className={`w-4 h-4 rounded-full ${
+                                    step.active 
+                                      ? 'bg-black' 
+                                      : step.completed
+                                      ? 'bg-black'
+                                      : 'bg-gray-300'
+                                  }`}></div>
+                                  <span className="text-sm mt-2 font-medium">{step.name}</span>
+                                </div>
+                                {index < steps.length - 1 && (
+                                  <div className="w-16 sm:w-48 h-px bg-black  mt-[-20px]"></div>
+                                )}
+                              </React.Fragment>
+                            ))}
+                          </div>
+                        </div>
 
         {/* Desktop Layout */}
         <div className="hidden lg:grid lg:grid-cols-2 lg:gap-8">
@@ -320,8 +320,10 @@ const CartPage = () => {
 
           {/* Mobile Action Buttons */}
           <div className="space-y-3">
-            <button className="w-full bg-[#F1B213] text-white py-3 rounded-full text-lg font-medium font-suez">
-              View More Products
+            <button 
+            onClick={() => window.location.href = '/address '}
+            className="w-full bg-[#F1B213] text-white py-3 rounded-full text-lg font-medium font-suez">
+              Next Step
             </button>
             <button 
               onClick={() => window.location.href = '/ '}

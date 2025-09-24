@@ -41,7 +41,7 @@ const Hero = () => {
           <img
             src={hero2}
             alt="Hero secondary"
-            className="w-[180px] sm:w-[220px] lg:w-[250px] border-8 border-white object-cover absolute top-52 sm:top-80 right-[-10px] sm:right-[-10px]"
+            className="w-[180px] sm:w-[220px] lg:w-[250px] border-8 border-white object-cover absolute top-64 sm:top-80 right-[-10px] sm:right-[-10px]"
           />
         </div>
 

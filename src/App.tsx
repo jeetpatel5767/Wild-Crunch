@@ -13,6 +13,8 @@ import PaymentPage from "./components/Buy/Payment";
 import ConfirmPage from "./components/Buy/Confirm";
 import NotFound from "./pages/NotFound";
 import AddressPage from "./components/Buy/Address";
+import ScrollToTop from "./components/extra/ScrollTop";
+
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -40,6 +42,7 @@ function AnimatedRoutes() {
 
 const App = () => (
   <BrowserRouter>
+      <ScrollToTop />
     <AnimatedRoutes />
   </BrowserRouter>
 );

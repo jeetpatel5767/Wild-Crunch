@@ -4,7 +4,7 @@ import Product from "@/components/Product/Product"
 
 const Products = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#F8F7E5]">
       <Header/>
 
       {/* Two-column welcome section */}

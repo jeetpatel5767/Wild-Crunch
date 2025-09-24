@@ -18,7 +18,7 @@ const Footer = () => {
   const pathData = generateRandomPath();
 
   return (
-   <footer className="w-screen h-auto bg-[#F8F7E5] relative flex flex-col items-center py-16 gap-12">
+   <footer className="w-screen h-auto bg-[#F8F7E5] relative flex flex-col items-center px-20 py-20 gap-12">
 
       {/* Full background yellow shape */}
       <div className="absolute inset-0 z-80">
@@ -35,10 +35,10 @@ const Footer = () => {
       </div>
 
       {/* ================= Desktop View ================= */}
-      <div className="relative z-10 hidden lg:flex flex-col">
+      <div className="relative z-10 hidden lg:flex flex-col w-screen">
         {/* Large heading */}
         <h2 className="text-center font-suez text-[#325DE8] leading-tight mb-16
-                       text-4xl sm:text-5xl md:text-6xl lg:text-[6.25rem] mt-48">
+                       text-4xl sm:text-5xl md:text-6xl lg:text-[6.25rem] mt-32">
           Thank You For Your Curiosity.
         </h2>
 
@@ -115,7 +115,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom copyright */}
-        <div className="border-t border-[#466DDF]/10 w-full">
+        <div className=" w-full">
           <div className="flex flex-col md:flex-row items-center justify-between text-[#466DDF] mt-2 mb-4 ml-6 mr-6">
             <p className="text-sm font-jost">
               © {new Date().getFullYear()} WildCrunch - All Rights Reserved

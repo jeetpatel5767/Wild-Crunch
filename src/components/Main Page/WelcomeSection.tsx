@@ -4,14 +4,14 @@ const WelcomeSection = () => {
   return (
     <section className="py-20 bg-background overflow-hidden">
       {/* Infinite Loop Text */}
-      <div className="w-full overflow-hidden border-y border-muted py-3 bg-background">
+      <div className="w-full overflow-hidden  py-3 bg-background">
         <div className="flex animate-marquee whitespace-nowrap">
           {Array(10)
             .fill("BETTER FOR YOU,")
             .map((text, idx) => (
               <span
                 key={idx}
-                className="mx-4 text-7xl font-suez text-[#DFD637] tracking-wide"
+                className="mx-4 text-4xl sm:text-7xl font-suez text-[#DFD637] tracking-wide"
               >
                 {text}
               </span>
@@ -40,7 +40,7 @@ const WelcomeSection = () => {
     <br />
     THIS{" "}
     <span
-      className="inline-block text-center sm:text-left align-text-middle font-suez text-xs sm:text-sm leading-snug ml-0 sm:ml-2 mr-0 sm:mr-2 mt-2 sm:mt-0"
+      className="inline-block text-center sm:text-left align-text-middle font-suez text-[10px] sm:text-sm leading-snug ml-0 sm:ml-2 mr-0 sm:mr-2 mt-2 sm:mt-0"
     >
       A Space For Snack <br />
       Lovers, Where Taste, <br />
@@ -50,7 +50,7 @@ const WelcomeSection = () => {
     <br />
     TOGETHER{" "}
     <span
-      className="inline-block text-center sm:text-left align-text-middle font-suez text-xs sm:text-sm leading-snug ml-0 sm:ml-2 mr-0 sm:mr-2 mt-2 sm:mt-0"
+      className="inline-block text-center sm:text-left align-text-middle font-suez text-[10px] sm:text-sm leading-snug ml-0 sm:ml-2 mr-0 sm:mr-2 mt-2 sm:mt-0"
     >
       Made For Snack Lovers, <br />
       Where Every Bite Feels <br />

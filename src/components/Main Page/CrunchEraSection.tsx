@@ -13,6 +13,7 @@ import IngredientsIcon from "@/assets/ingredientsLogo.png";
 import GlutenFreeIcon from "@/assets/GlutenLogo.png";
 import FlavorIcon from "@/assets/deliciousLogo.png";
 import pointsBG from "@/assets/pointsBG.png";
+import { Link } from "react-router-dom";
 
 const CrunchEraSection = () => {
   const products = [
@@ -72,7 +73,7 @@ const CrunchEraSection = () => {
             >
               <div className="flex flex-col h-full">
                 {/* Product Image */}
-                <div className="text-center mb-[-10px] flex-shrink-0 -mt-24 sm:-mt-48">
+                <div className="text-center ml-[-5px] sm:ml-[-25px] mb-[-10px] flex-shrink-0 -mt-24 sm:-mt-48">
                   <img
                     src={product.imageSrc}
                     alt={product.name.join(" ")}
@@ -94,22 +95,25 @@ const CrunchEraSection = () => {
               </div>
 
               {/* Arrow Button */}
-              <div className="absolute -bottom-3 sm:-bottom-5 -right-4 sm:-right-8 w-10 sm:w-16 h-10 sm:h-16 bg-[#F1E613] rounded-full flex items-center justify-center cursor-pointer shadow-lg">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-3 sm:w-6 h-3 sm:h-6 text-gray-800"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2.5}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M5 19L19 5m0 0H5.5M19 5v13.5"
-                  />
-                </svg>
-              </div>
+
+<div className="absolute -bottom-3 sm:-bottom-5 -right-4 sm:-right-8 w-10 sm:w-16 h-10 sm:h-16 bg-[#F1E613] rounded-full flex items-center justify-center cursor-pointer shadow-lg">
+  <Link to="/products">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-3 sm:w-6 h-3 sm:h-6 text-gray-800"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={2.5}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M5 19L19 5m0 0H5.5M19 5v13.5"
+      />
+    </svg>
+  </Link>
+</div>
             </div>
           ))}
         </div>
@@ -140,72 +144,55 @@ const CrunchEraSection = () => {
       </div>
 
       {/* Features */}
-      <div className="relative z-10 flex flex-wrap items-center justify-center gap-x-10 gap-y-12 md:gap-x-20 md:gap-y-16 max-w-7xl mx-auto">
-        {/* Feature 1 */}
-        <div className="flex items-center space-x-4 max-w-xs">
-          <img src={HighProteinIcon} alt="High Protein" className="w-12 h-12" />
-          <div>
-            <h3 className="text-xl font-suez text-[#325DE8]">High Protein</h3>
-            <p className="text-[#466DDF] font-jost">
-              Fuel your body with every crunchy bite.
-            </p>
-          </div>
-        </div>
+<div className="relative z-10 flex flex-wrap items-center justify-center gap-x-10 gap-y-12 md:gap-x-20 md:gap-y-16 max-w-7xl mx-auto">
+  {/* Feature 1 */}
+  <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left space-y-2 sm:space-y-0 sm:space-x-4 max-w-xs">
+    <img src={HighProteinIcon} alt="High Protein" className="w-12 h-12" />
+    <div>
+      <h3 className="text-xl font-suez text-[#325DE8]">High Protein</h3>
+      <p className="text-[#466DDF] font-jost">
+        Fuel your body with every crunchy bite.
+      </p>
+    </div>
+  </div>
 
-        {/* Feature 2 */}
-        <div className="flex items-center space-x-4 max-w-xs">
-          <img
-            src={LowCaloriesIcon}
-            alt="Low In Calories"
-            className="w-12 h-12"
-          />
-          <div>
-            <h3 className="text-xl font-suez text-[#325DE8]">Low In Calories</h3>
-            <p className="text-[#466DDF] font-jost">Guilt-free snacking anytime.</p>
-          </div>
-        </div>
+  {/* Feature 2 */}
+  <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left space-y-2 sm:space-y-0 sm:space-x-4 max-w-xs">
+    <img src={LowCaloriesIcon} alt="Low In Calories" className="w-12 h-12" />
+    <div>
+      <h3 className="text-xl font-suez text-[#325DE8]">Low In Calories</h3>
+      <p className="text-[#466DDF] font-jost">Guilt-free snacking anytime.</p>
+    </div>
+  </div>
 
-        {/* Feature 3 */}
-        <div className="flex items-center space-x-4 max-w-xs">
-          <img
-            src={IngredientsIcon}
-            alt="Good Ingredients"
-            className="w-12 h-12"
-          />
-          <div>
-            <h3 className="text-xl font-suez text-[#325DE8]">Good Ingredients</h3>
-            <p className="text-[#466DDF] font-jost">Only the best for you.</p>
-          </div>
-        </div>
+  {/* Feature 3 */}
+  <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left space-y-2 sm:space-y-0 sm:space-x-4 max-w-xs">
+    <img src={IngredientsIcon} alt="Good Ingredients" className="w-12 h-12" />
+    <div>
+      <h3 className="text-xl font-suez text-[#325DE8]">Good Ingredients</h3>
+      <p className="text-[#466DDF] font-jost">Only the best for you.</p>
+    </div>
+  </div>
 
-        {/* Feature 4 */}
-        <div className="flex items-center space-x-4 max-w-xs">
-          <img
-            src={GlutenFreeIcon}
-            alt="Gluten Free & Healthy"
-            className="w-12 h-12"
-          />
-          <div>
-            <h3 className="text-xl font-suez text-[#325DE8]">
-              Gluten-Free & Healthy
-            </h3>
-            <p className="text-[#466DDF] font-jost">Better snacking, no worries.</p>
-          </div>
-        </div>
+  {/* Feature 4 */}
+  <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left space-y-2 sm:space-y-0 sm:space-x-4 max-w-xs">
+    <img src={GlutenFreeIcon} alt="Gluten Free & Healthy" className="w-12 h-12" />
+    <div>
+      <h3 className="text-xl font-suez text-[#325DE8]">Gluten-Free & Healthy</h3>
+      <p className="text-[#466DDF] font-jost">Better snacking, no worries.</p>
+    </div>
+  </div>
 
-        {/* Feature 5 */}
-        <div className="flex items-center space-x-4 max-w-xs">
-          <img src={FlavorIcon} alt="Deliciously Flavorful" className="w-12 h-12" />
-          <div>
-            <h3 className="text-xl font-suez text-[#325DE8]">
-              Deliciously Flavorful
-            </h3>
-            <p className="text-[#466DDF] font-jost">
-              Exciting flavors in every bite.
-            </p>
-          </div>
-        </div>
-      </div>
+  {/* Feature 5 */}
+  <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left space-y-2 sm:space-y-0 sm:space-x-4 max-w-xs">
+    <img src={FlavorIcon} alt="Deliciously Flavorful" className="w-12 h-12" />
+    <div>
+      <h3 className="text-xl font-suez text-[#325DE8]">Deliciously Flavorful</h3>
+      <p className="text-[#466DDF] font-jost">Exciting flavors in every bite.</p>
+    </div>
+  </div>
+</div>
+
     </div>
     </section>
   );
