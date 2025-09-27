@@ -14,6 +14,8 @@ import ConfirmPage from "./components/Buy/Confirm";
 import NotFound from "./pages/NotFound";
 import AddressPage from "./components/Buy/Address";
 import ScrollToTop from "./components/extra/ScrollTop";
+import LoginPage from "./components/Profile & Login/login";
+import Profile from "./components/Profile & Login/profile";
 
 
 function AnimatedRoutes() {
@@ -33,6 +35,8 @@ function AnimatedRoutes() {
         <Route path="/address" element={<AddressPage/>} />
         <Route path="/payment" element={<PaymentPage/>} />
         <Route path="/confirm" element={<ConfirmPage/>} /> 
+        <Route path="/Login" element={<LoginPage/>} />
+        <Route path="/profile" element={<Profile/>} />
         <Route path="*" element={<NotFound />} />
 
       </Routes>
