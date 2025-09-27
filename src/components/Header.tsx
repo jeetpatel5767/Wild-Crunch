@@ -1,7 +1,7 @@
 import { Heart, ShoppingCart, User, Menu, ArrowLeft, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import LogoWC from "../assets/LogoWC.png"; 
 import Cart from "./cart"; // import the new Cart component
@@ -16,6 +16,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false); // burger menu
   const [cartOpen, setCartOpen] = useState(false); // cart sidebar toggle
   const navigate = useNavigate();
+  const location = useLocation();
 
   const menuItems = [
     { name: "Home", path: "/" },
@@ -288,33 +289,40 @@ const Header = () => {
 
           {/* Navigation Links */}
           <nav className="space-y-3 mt-16">
-            {menuItems.map((item, index) => (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4 + index * 0.1 }}
-              >
-                <motion.button
-                  onClick={() => handleNavigation(item.path)}
-                  className="text-left font-suez text-lg text-[#212121] hover:text-[#DD815C] transition-colors w-full py-2"
-                  whileHover={{ x: 10, transition: { duration: 0.2 } }}
-                  whileTap={{ scale: 0.98 }}
+            {menuItems.map((item, index) => {
+              const isActive = location.pathname === item.path;
+              return (
+                <motion.div
+                  key={item.name}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4 + index * 0.1 }}
                 >
-                  {item.name}
-                </motion.button>
-                <motion.hr
-                  className="border-b-2 border-dotted border-[#212121] w-1/2 mt-1"
-                  initial={{ width: 0 }}
-                  animate={{ width: "50%" }}
-                  transition={{
-                    delay: 0.5 + index * 0.1,
-                    duration: 0.5,
-                    ease: [0.4, 0, 0.2, 1],
-                  }}
-                />
-              </motion.div>
-            ))}
+                  <motion.button
+                    onClick={() => handleNavigation(item.path)}
+                    className={`text-left font-suez text-lg transition-colors w-full py-2 ${
+                      isActive 
+                        ? 'text-[#DD815C]' 
+                        : 'text-[#212121] hover:text-[#DD815C]'
+                    }`}
+                    whileHover={{ x: 10, transition: { duration: 0.2 } }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {item.name}
+                  </motion.button>
+                  <motion.hr
+                    className="border-b-2 border-dotted border-[#212121] w-1/2 mt-1"
+                    initial={{ width: 0 }}
+                    animate={{ width: "50%" }}
+                    transition={{
+                      delay: 0.5 + index * 0.1,
+                      duration: 0.5,
+                      ease: [0.4, 0, 0.2, 1],
+                    }}
+                  />
+                </motion.div>
+              );
+            })}
           </nav>
         </div>
       </motion.div>

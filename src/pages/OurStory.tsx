@@ -20,7 +20,7 @@ const OurStory = () => {
       <Header/>
       <Hero/>
 
- <div className="relative z-10 max-w-8xl px-8 mt-20 mb-20">
+ <div className="relative z-10 max-w-8xl px-8 mt-5 mb-5 sm:mt-20 sm:mb-20">
   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 justify-items-center gap-10 sm:gap-0">
     
     {/* Feature 1 */}

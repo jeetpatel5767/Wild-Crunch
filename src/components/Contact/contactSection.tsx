@@ -52,31 +52,23 @@ const ContactSection = () => {
             </div>
 
             {/* Map Placeholder */}
-            <motion.div
-              className="bg-gray-200 rounded-2xl h-64 sm:h-80 lg:h-96 flex items-center justify-center border-2 border-gray-300"
-              initial={{ scale: 0.8, rotate: -3, opacity: 0 }}
-              whileInView={{ scale: 1, rotate: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ type: 'spring', stiffness: 120, damping: 14 }}
-              whileHover={{ scale: 1.02, rotate: 1, boxShadow: '0px 20px 40px rgba(0,0,0,0.15)' }}
-            >
-<div className="text-center">
+<motion.div
+  className="bg-gray-200 rounded-2xl h-64 sm:h-80 lg:h-[410px] flex items-center justify-center border-2 border-gray-300 relative overflow-hidden"
+  initial={{ scale: 0.8, rotate: -3, opacity: 0 }}
+  whileInView={{ scale: 1, rotate: 0, opacity: 1 }}
+  viewport={{ once: true }}
+  transition={{ type: 'spring', stiffness: 120, damping: 14 }}
+  whileHover={{ scale: 1.02, rotate: 1, boxShadow: '0px 20px 40px rgba(0,0,0,0.15)' }}
+>
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2365.397511692727!2d72.96320005311398!3d23.630986535515152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395db9f77fa47ec5%3A0x8ff87481d69678b2!2sAirfix%20Build%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1758976804441!5m2!1sen!2sin"
+    className="absolute inset-0 w-full h-full border-0"
+    allowFullScreen
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+  ></iframe>
+</motion.div>
 
-
-  {/* Google Earth Embed */}
-  <div className="mt-6 w-full flex justify-center">
-    <iframe
-      src="https://earth.app.goo.gl/?apn=com.google.earth&isi=293622097&ius=googleearth&link=https%3a%2f%2fearth.google.com%2fweb%2fsearch%2fHimatnagar,%2bGujarat%2f%4023.6308249,72.96265124,176.41694641a,0d,90y,20.02352783h,83.77446388t,0r%2fdata%3dCiwiJgokCWyCDmpumzdAEQL57wMBmzdAGTwX_gwaS1JAIfWtaEsMS1JAQgIIASIaChZxTGRWRmNzT2k1TGJRNVFNX0Vsbjd3EAIyKQonCiUKITFQS0dBaFBOU2FfWHFVTU5TUlpvaHNFQzBzYW5MS1YwMCABQgIIAEoICJDZ3pcDEAE"
-      width="100%"
-      height="500"
-      style={{ border: "0" }}
-      allowFullScreen
-      loading="lazy"
-    ></iframe>
-  </div>
-</div>
-
-            </motion.div>
           </div>
 
           {/* Right Side - Contact Form */}

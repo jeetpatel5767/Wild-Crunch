@@ -157,25 +157,6 @@ const Rightcrunch = () => {
                   }
                 }}
               />
-              
-          
-              <motion.div
-                className="absolute w-1.5 h-1.5 bg-[#2D1B13] rounded-full opacity-60"
-                style={{
-                  bottom: `${30 + idx * 8}%`,
-                  right: `${15 + idx * 3}%`
-                }}
-                animate={{
-                  scale: [0.8, 1.5, 0.8],
-                  rotate: [0, 180, 360],
-                  y: [0, -20, 0],
-                  transition: {
-                    duration: 5 + idx * 0.7,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }
-                }}
-              />
             </motion.div>
           ))}
         </motion.div>

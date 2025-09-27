@@ -205,24 +205,6 @@ const Others = () => {
                     }}
                   />
                   
-                  {/* Floating elements around images */}
-                  <motion.div
-                    className="absolute w-3 h-3 bg-white rounded-full opacity-60"
-                    style={{
-                      top: `${30 + index * 10}%`,
-                      left: `${20 + index * 15}%`
-                    }}
-                    animate={{
-                      scale: [0.5, 1.5, 0.5],
-                      opacity: [0.3, 0.8, 0.3],
-                      rotate: [0, 360],
-                      transition: {
-                        duration: 4 + index,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }
-                    }}
-                  />
                 </div>
 
                 {/* Product Details */}
@@ -299,23 +281,7 @@ const Others = () => {
               </motion.div>
 
               {/* Background floating particles */}
-              <motion.div
-                className="absolute w-4 h-4 bg-white rounded-full opacity-20"
-                style={{
-                  top: `${60 + index * 5}%`,
-                  right: `${10 + index * 8}%`
-                }}
-                animate={{
-                  y: [0, -20, 0],
-                  x: [0, 10, -10, 0],
-                  scale: [0.8, 1.3, 0.8],
-                  transition: {
-                    duration: 5 + index * 0.8,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }
-                }}
-              />
+
             </motion.div>
           ))}
         </motion.div>

@@ -59,20 +59,18 @@ const Hero = () => {
         >
           {/* First Hero Image */}
           <motion.img
-            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            initial={{ opacity: 0, rotate: -5 }}
+            animate={{ opacity: 1, rotate: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            whileHover={{ scale: 1.05 }}
             src={Oustory_hero}
             alt="Hero main"
             className="w-[290px] h-[280px] sm:w-[350px] lg:w-[450px] lg:h-[400px] h-auto object-cover relative top-6 sm:top-10 -left-2 sm:-left-6"
           />
           {/* Second Hero Image overlapping */}
           <motion.img
-            initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            initial={{ opacity: 0, rotate: 5 }}
+            animate={{ opacity: 1, rotate: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            whileHover={{ scale: 1.05, rotate: 2 }}
             src={hero2}
             alt="Hero secondary"
             className="w-[180px] sm:w-[220px] lg:w-[250px] border-8 border-white object-cover absolute top-64 sm:top-80 right-[-10px] sm:right-[-10px]"
@@ -110,7 +108,9 @@ const Hero = () => {
         </motion.div>
       </div>
     </div>
-  );
+    );
 };
 
 export default Hero;
+
+

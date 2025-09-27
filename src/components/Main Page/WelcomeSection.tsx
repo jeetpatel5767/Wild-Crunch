@@ -23,9 +23,7 @@ const WelcomeSection = () => {
         <div className="max-w-8xl mx-auto text-center space-y-12">
           {/* ABOUT + Logo */}
           <div className="flex flex-col items-center space-y-4">
-            <span className="text-lg font-suez text-foreground uppercase tracking-wide">
-              ABOUT
-            </span>
+
             <img
               src={LogoWC}
               alt="Wild Crunch Logo"

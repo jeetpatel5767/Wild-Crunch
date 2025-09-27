@@ -91,7 +91,7 @@ const WishlistPage = () => {
         layoutId={`product-image-${product.id}`}
         src={product.imageSrc}
         alt={product.name}
-        className="w-[120px] sm:w-[150px] h-auto transition-transform duration-500 hover:-rotate-12"
+        className=" max-w-none w-[270px] sm:w-[330px] h-auto transition-transform duration-500 hover:-rotate-12"
       />
     </motion.div>
 

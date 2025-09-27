@@ -143,43 +143,43 @@ const Products = () => {
                 style={{ backgroundColor: product.bgColor }}
               >
                 {/* Heart */}
-                <button
-                  className="absolute top-4 right-4"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleWishlist(product);
-                  }}
-                >
-                  <Heart
-                    size={20}
-                    className={
-                      wishlist.some((item) => item.id === product.id)
-                        ? "fill-black"
-                        : ""
-                    }
-                  />
-                </button>
+<button
+  className="absolute top-4 right-4 z-20"
+  onClick={(e) => {
+    e.stopPropagation();
+    toggleWishlist(product);
+  }}
+>
+  <Heart
+    size={20}
+    className={
+      wishlist.some((item) => item.id === product.id)
+        ? "fill-black"
+        : ""
+    }
+  />
+</button>
 
                 {/* Product Image */}
-                <motion.div
-                  key={`product-image-container-${product.id}-${index}`}
-                  className={`absolute left-1/2 transform -translate-x-1/2 ${
-                    product.category === "Combo"
-                      ? "top-[-5px] sm:top-[-30px]"
-                      : "-top-28           sm:-top-36"
-                  }`}
-                >
-                  <motion.img
-                    key={`product-image-${product.id}-${index}`}
-                    src={product.imageSrc}
-                    alt={product.name}
-                    className={`max-w-none h-auto mx-auto transform transition-transform duration-500 hover:-rotate-12 ${
-                      product.category === "Combo"
-                        ? "w-[200px] sm:w-[250px]"
-                        : "w-[350px] sm:w-[420px]"
-                    }`}
-                  />
-                </motion.div>
+<motion.div
+  key={`product-image-container-${product.id}-${index}`}
+  className={`absolute left-1/2 transform -translate-x-1/2 z-10 ${
+    product.category === "Combo"
+      ? "top-[-5px] sm:top-[-30px]"
+      : "-top-28 sm:-top-36"
+  }`}
+>
+  <motion.img
+    key={`product-image-${product.id}-${index}`}
+    src={product.imageSrc}
+    alt={product.name}
+    className={`max-w-none h-auto mx-auto transform transition-transform duration-500 hover:-rotate-12 ${
+      product.category === "Combo"
+        ? "w-[200px] sm:w-[250px]"
+        : "w-[350px] sm:w-[420px]"
+    }`}
+  />
+</motion.div>
 
                 {/* Details */}
                 <div className="mt-2 flex flex-col justify-end text-left text-white h-full">

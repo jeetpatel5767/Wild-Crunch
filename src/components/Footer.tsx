@@ -194,7 +194,7 @@ const Footer = () => {
               EXPLORE
             </motion.h3>
             <ul className="space-y-3">
-              {["Our Story", "Dealership", "Contact"].map((item, index) => (
+              {["Our Story", "Dealerships", "Contact"].map((item, index) => (
                 <motion.li key={item} variants={linkVariants}>
                   <motion.a 
                     href={`/${item.toLowerCase().replace(" ", "-")}`} 
@@ -225,23 +225,30 @@ const Footer = () => {
             >
               LEARN
             </motion.h3>
-            <ul className="space-y-2">
-              {["Home", "Product", "Testimonial", "Cart", "WishList"].map((item, index) => (
-                <motion.li key={item} variants={linkVariants}>
-                  <motion.a 
-                    href={`/${item.toLowerCase()}`} 
-                    className="text-[#466DDF] font-jost"
-                    whileHover={{
-                      color: "#275AF3",
-                      x: 10,
-                      transition: { duration: 0.3 }
-                    }}
-                  >
-                    {item}
-                  </motion.a>
-                </motion.li>
-              ))}
-            </ul>
+<ul className="space-y-2">
+  {[
+    { label: "Home", path: "/" },
+    { label: "Products", path: "/products" },
+    { label: "Testimonial", path: "/testimonial" },
+    { label: "Cart", path: "/cart" },
+    { label: "WishList", path: "/wishlist" },
+  ].map((link) => (
+    <motion.li key={link.label} variants={linkVariants}>
+      <motion.a
+        href={link.path}
+        className="text-[#466DDF] font-jost"
+        whileHover={{
+          color: "#275AF3",
+          x: 10,
+          transition: { duration: 0.3 },
+        }}
+      >
+        {link.label}
+      </motion.a>
+    </motion.li>
+  ))}
+</ul>
+
           </motion.div>
 
           {/* Location */}
@@ -402,7 +409,7 @@ const Footer = () => {
               EXPLORE
             </motion.h3>
             <ul className="space-y-2">
-              {["Our Story", "Dealership", "Contact"].map((item, index) => (
+              {["Our Story", "Dealerships", "Contact"].map((item, index) => (
                 <motion.li 
                   key={item}
                   initial={{ opacity: 0, x: -15 }}
@@ -426,19 +433,26 @@ const Footer = () => {
             >
               LEARN
             </motion.h3>
-            <ul className="space-y-2">
-              {["Home", "Product", "Testimonial", "Cart", "WishList"].map((item, index) => (
-                <motion.li 
-                  key={item}
-                  initial={{ opacity: 0, x: 15 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1.0 + index * 0.1, duration: 0.5 }}
-                  className="text-[#466DDF] font-jost"
-                >
-                  {item}
-                </motion.li>
-              ))}
-            </ul>
+<ul className="space-y-2">
+  {[
+    { label: "Home", path: "/" },
+    { label: "Product", path: "/product" },
+    { label: "Testimonial", path: "/testimonial" },
+    { label: "Cart", path: "/cart" },
+    { label: "WishList", path: "/wishlist" },
+  ].map((link, index) => (
+    <motion.li
+      key={link.label}
+      initial={{ opacity: 0, x: 15 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: 1.0 + index * 0.1, duration: 0.5 }}
+      className="text-[#466DDF] font-jost"
+    >
+      <a href={link.path}>{link.label}</a>
+    </motion.li>
+  ))}
+</ul>
+
           </div>
         </motion.div>
 
@@ -447,7 +461,7 @@ const Footer = () => {
           initial={{ scaleX: 0, opacity: 0 }}
           animate={{ scaleX: 1, opacity: 1 }}
           transition={{ delay: 1.5, duration: 1.5 }}
-          className="mt-6 w-screen relative left-1/2 -translate-x-1/2"
+          className="mt-6 w-screen relative right-6"
         >
           <svg
             viewBox="0 0 1200 28"
@@ -523,7 +537,7 @@ const Footer = () => {
           initial={{ scaleX: 0, opacity: 0 }}
           animate={{ scaleX: 1, opacity: 1 }}
           transition={{ delay: 3.0, duration: 1.5 }}
-          className="mt-6 w-screen relative left-1/2 -translate-x-1/2"
+          className="mt-6 w-screen relative right-6"
         >
           <svg
             viewBox="0 0 1200 28"
