@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import HeroImg from "@/assets/HeroImg.png"; // your background image
+import { motion } from "framer-motion"; // added
 
 const HeroSection = () => {
   return (
@@ -16,8 +17,14 @@ const HeroSection = () => {
           backgroundPosition: "center",
         }}
       >
-        {/* Content */}
-        <div className="relative z-10 text-center px-4 mt-4 lg:mt-10">
+        {/* Content with animation */}
+        <motion.div
+          className="relative z-10 text-center px-4 mt-4 lg:mt-10"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ type: "spring", stiffness: 80, damping: 20, duration: 1 }}
+        >
           <h1 className="font-sfpro font-semibold text-4xl lg:text-6xl text-[#BE9A5E] mb-3">
             CRUNCH, Taste, LIGHT
           </h1>
@@ -32,7 +39,7 @@ const HeroSection = () => {
           >
             SHOP NOW
           </Button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

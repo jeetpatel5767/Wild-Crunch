@@ -1,4 +1,3 @@
-
 import LogoWC from "../../assets/LogoWC.png";
 import { Instagram, Linkedin, Twitter } from "lucide-react";
 
@@ -130,12 +129,12 @@ const Footer = () => {
       {/* ================= Mobile View ================= */}
       <div className="relative z-10 flex flex-col lg:hidden px-6 py-6">
         {/* Heading */}
-        <h2 className="text-center font-suez text-[#325DE8] text-3xl leading-snug mb-8">
+        <h2 className="text-center font-suez text-[#325DE8] text-3xl leading-snug mb-8 px-4">
           Thank You For Your Curiosity.
         </h2>
 
         {/* Explore + Learn row */}
-        <div className="flex justify-between mr-8 ml-8">
+        <div className="flex justify-between px-4">
           {/* Explore */}
           <div className="flex flex-col text-left">
             <h3 className="font-jost font-bold text-[#275AF3] text-lg mb-2">EXPLORE</h3>
@@ -178,7 +177,7 @@ const Footer = () => {
 
 
         {/* Location with heading + icons inline */}
-        <div className="mt-4">
+        <div className="mt-4 px-4">
           <div className="flex justify-between items-center">
             <h3 className="font-jost font-bold text-[#275AF3] text-lg">LOCATION</h3>
             <div className="flex gap-3 text-[#466DDF]">
@@ -222,7 +221,7 @@ const Footer = () => {
 
 
         {/* Copyright */}
-        <div className="text-left text-[#466DDF] mt-2">
+        <div className="text-left text-[#466DDF] mt-2 px-4">
           <p className="text-sm font-jost">
             © {new Date().getFullYear()} WildCrunch - All Rights Reserved
           </p>

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { motion } from 'framer-motion'; // Added
 // Import your local images from assets
 import ProteinPuff from '@/assets/proteinpuff.png';
 import PopCorn from '@/assets/popcorn.png';
@@ -49,6 +49,14 @@ const CrunchEraSection = () => {
     },
   ];
 
+  const features = [
+    { icon: HighProteinIcon, title: "High Protein", text: "Fuel your body with every crunchy bite." },
+    { icon: LowCaloriesIcon, title: "Low In Calories", text: "Guilt-free snacking anytime." },
+    { icon: IngredientsIcon, title: "Good Ingredients", text: "Only the best for you." },
+    { icon: GlutenFreeIcon, title: "Gluten-Free & Healthy", text: "Better snacking, no worries." },
+    { icon: FlavorIcon, title: "Deliciously Flavorful", text: "Exciting flavors in every bite." },
+  ];
+
   return (
     <section className="relative py-16 lg:py-24 bg-[#F8F7E5] overflow-hidden">
       {/* Tilted background div (desktop only) */}
@@ -63,13 +71,17 @@ const CrunchEraSection = () => {
           </h2>
         </div>
 
-        {/* Products Grid */}
+        {/* Products Grid with animation */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-x-4 sm:gap-x-12 xl:gap-x-16 gap-y-24 sm:gap-y-48 max-w-7xl mx-auto mt-24 sm:mt-48">
           {products.map((product, index) => (
-            <div
+            <motion.div
               key={index}
               className={`${product.bgColor} rounded-3xl p-3 sm:p-6 relative min-h-[200px] sm:min-h-[100px] overflow-visible`}
-              style={{ marginLeft: '0.5rem', marginRight: '0.5rem' }} // Added small side margins for mobile
+              style={{ marginLeft: '0.5rem', marginRight: '0.5rem' }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ type: "spring", stiffness: 80, damping: 20, duration: 1, delay: index * 0.2 }}
             >
               <div className="flex flex-col h-full">
                 {/* Product Image */}
@@ -95,26 +107,25 @@ const CrunchEraSection = () => {
               </div>
 
               {/* Arrow Button */}
-
-<div className="absolute -bottom-3 sm:-bottom-5 -right-4 sm:-right-8 w-10 sm:w-16 h-10 sm:h-16 bg-[#F1E613] rounded-full flex items-center justify-center cursor-pointer shadow-lg">
-  <Link to="/products">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-3 sm:w-6 h-3 sm:h-6 text-gray-800"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth={2.5}
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M5 19L19 5m0 0H5.5M19 5v13.5"
-      />
-    </svg>
-  </Link>
-</div>
-            </div>
+              <div className="absolute -bottom-3 sm:-bottom-5 -right-4 sm:-right-8 w-10 sm:w-16 h-10 sm:h-16 bg-[#F1E613] rounded-full flex items-center justify-center cursor-pointer shadow-lg">
+                <Link to="/products">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-3 sm:w-6 h-3 sm:h-6 text-gray-800"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2.5}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M5 19L19 5m0 0H5.5M19 5v13.5"
+                    />
+                  </svg>
+                </Link>
+              </div>
+            </motion.div>
           ))}
         </div>
         
@@ -124,76 +135,39 @@ const CrunchEraSection = () => {
            Explore More
           </button>
         </div>
-
-        
-       
-
-
       </div>
 
+      {/* Features Section with animation */}
+      <div className="relative w-full py-20 px-6 overflow-hidden z-10 mt-10">
+        {/* Background Image */}
+        <div className="absolute inset-0 -z-10">
+          <img
+            src={pointsBG}
+            alt="Background"
+            className="w-full h-full object-cover"
+          />
+        </div>
 
-
-        <div className="relative w-full py-20 px-6 overflow-hidden z-10 mt-10">
-      {/* Background Image */}
-      <div className="absolute inset-0 -z-10">
-        <img
-          src={pointsBG}
-          alt="Background"
-          className="w-full h-full object-cover"
-        />
+        {/* Features Grid */}
+        <div className="relative z-10 flex flex-wrap items-center justify-center gap-x-10 gap-y-12 md:gap-x-20 md:gap-y-16 max-w-7xl mx-auto">
+          {features.map((feature, index) => (
+            <motion.div
+              key={index}
+              className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left space-y-2 sm:space-y-0 sm:space-x-4 max-w-xs"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ type: "spring", stiffness: 100, damping: 20, duration: 1.2, delay: index * 0.2 }}
+            >
+              <img src={feature.icon} alt={feature.title} className="w-12 h-12" />
+              <div>
+                <h3 className="text-xl font-suez text-[#325DE8]">{feature.title}</h3>
+                <p className="text-[#466DDF] font-jost">{feature.text}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
-
-      {/* Features */}
-<div className="relative z-10 flex flex-wrap items-center justify-center gap-x-10 gap-y-12 md:gap-x-20 md:gap-y-16 max-w-7xl mx-auto">
-  {/* Feature 1 */}
-  <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left space-y-2 sm:space-y-0 sm:space-x-4 max-w-xs">
-    <img src={HighProteinIcon} alt="High Protein" className="w-12 h-12" />
-    <div>
-      <h3 className="text-xl font-suez text-[#325DE8]">High Protein</h3>
-      <p className="text-[#466DDF] font-jost">
-        Fuel your body with every crunchy bite.
-      </p>
-    </div>
-  </div>
-
-  {/* Feature 2 */}
-  <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left space-y-2 sm:space-y-0 sm:space-x-4 max-w-xs">
-    <img src={LowCaloriesIcon} alt="Low In Calories" className="w-12 h-12" />
-    <div>
-      <h3 className="text-xl font-suez text-[#325DE8]">Low In Calories</h3>
-      <p className="text-[#466DDF] font-jost">Guilt-free snacking anytime.</p>
-    </div>
-  </div>
-
-  {/* Feature 3 */}
-  <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left space-y-2 sm:space-y-0 sm:space-x-4 max-w-xs">
-    <img src={IngredientsIcon} alt="Good Ingredients" className="w-12 h-12" />
-    <div>
-      <h3 className="text-xl font-suez text-[#325DE8]">Good Ingredients</h3>
-      <p className="text-[#466DDF] font-jost">Only the best for you.</p>
-    </div>
-  </div>
-
-  {/* Feature 4 */}
-  <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left space-y-2 sm:space-y-0 sm:space-x-4 max-w-xs">
-    <img src={GlutenFreeIcon} alt="Gluten Free & Healthy" className="w-12 h-12" />
-    <div>
-      <h3 className="text-xl font-suez text-[#325DE8]">Gluten-Free & Healthy</h3>
-      <p className="text-[#466DDF] font-jost">Better snacking, no worries.</p>
-    </div>
-  </div>
-
-  {/* Feature 5 */}
-  <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left space-y-2 sm:space-y-0 sm:space-x-4 max-w-xs">
-    <img src={FlavorIcon} alt="Deliciously Flavorful" className="w-12 h-12" />
-    <div>
-      <h3 className="text-xl font-suez text-[#325DE8]">Deliciously Flavorful</h3>
-      <p className="text-[#466DDF] font-jost">Exciting flavors in every bite.</p>
-    </div>
-  </div>
-</div>
-
-    </div>
     </section>
   );
 };

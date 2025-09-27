@@ -109,12 +109,17 @@ const InProduct = () => {
                   transition={{ delay: 0.6, duration: 0.5 }}
                 >
                   <div className="rounded-[40px] border-dashed border-2 border-white p-4">
-                    <div className="rounded-[40px] border border-white p-3 flex justify-center items-center">
-                      <img
-                        src={selectedProduct.imageSrc}
-                        alt={selectedProduct.name}
-                        className="w-[160px] h-auto"
-                      />
+                    <div className="rounded-[40px] border border-white  flex justify-center items-center">
+<motion.img
+  key={`modal-image-${selectedProduct.id}`}
+  layoutId={`product-image-${selectedProduct.id}`}
+  src={selectedProduct.imageSrc}
+  alt={selectedProduct.name}
+  className="w-[200px] h-[230px]"
+  initial={{ scale: 1 }}
+  animate={{ scale: 1.3 }} // zoomed in
+  transition={{ duration: 0.3 }}
+/>
                     </div>
                   </div>
                 </motion.div>
@@ -257,14 +262,18 @@ const InProduct = () => {
                   layoutId={`product-image-container-${selectedProduct.id}`}
                   className="rounded-[80px] border-dashed border-2 border-white p-6"
                 >
-                  <div className="rounded-[80px] border border-white p-4 flex justify-center items-center">
-                    <motion.img
-                      key={`modal-image-${selectedProduct.id}`}
-                      layoutId={`product-image-${selectedProduct.id}`}
-                      src={selectedProduct.imageSrc}
-                      alt={selectedProduct.name}
-                      className="w-[250px] sm:w-[300px] max-w-full h-auto"
-                    />
+                  <div className="rounded-[80px] border border-white flex justify-center items-center">
+<motion.img
+  key={`modal-image-${selectedProduct.id}`}
+  layoutId={`product-image-${selectedProduct.id}`}
+  src={selectedProduct.imageSrc}
+  alt={selectedProduct.name}
+  className="h-[400px]"
+  initial={{ scale: 1 }}
+  animate={{ scale: 1.6 }} // zoomed in
+  transition={{ duration: 0.3 }}
+/>
+
                   </div>
                 </motion.div>
               </div>

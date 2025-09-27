@@ -1,10 +1,16 @@
-import { Heart, ShoppingCart, User, Menu } from "lucide-react";
+import { Heart, ShoppingCart, User, Menu, ArrowLeft, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import LogoWC from "../assets/LogoWC.png"; 
 import Cart from "./cart"; // import the new Cart component
+import img1 from "@/assets/1.png"
+import img2 from "@/assets/2.png"
+import img3 from "@/assets/3.png"
+import img4 from "@/assets/4.png"
+
+const images = [img1, img2, img3, img4];
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false); // burger menu
@@ -14,12 +20,15 @@ const Header = () => {
   const menuItems = [
     { name: "Home", path: "/" },
     { name: "Our Story", path: "/our-story" },
-    { name: "Products", path: "/products" },
+    { name: "Shop", path: "/products" },
+    { name: "Cart", path: "/cart" },
+    { name: "Contact Us", path: "/contact" },
     { name: "Dealerships", path: "/dealerships" },
-    { name: "Contact", path: "/contact" },
+    { name: "Profile", path: "/" },
+    
   ];
 
-  const handleNavigation = (path: string) => {
+  const handleNavigation = (path) => {
     navigate(path);
     setIsOpen(false);
   };
@@ -38,6 +47,82 @@ const Header = () => {
     return path;
   };
   const pathData = generateRandomPath();
+
+  // Animation variants
+  const backdropVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { duration: 0.3 }
+    }
+  };
+
+  const sidebarVariants = {
+    hidden: { 
+      x: "100%",
+      transition: { 
+        duration: 0.4,
+        ease: [0.4, 0, 0.2, 1]
+      }
+    },
+    visible: { 
+      x: 0,
+      transition: { 
+        duration: 0.4,
+        ease: [0.4, 0, 0.2, 1]
+      }
+    }
+  };
+
+  const menuItemVariants = {
+    hidden: { 
+      x: 50, 
+      opacity: 0 
+    },
+    visible: (custom) => ({
+      x: 0,
+      opacity: 1,
+      transition: {
+        delay: custom * 0.1 + 0.2,
+        duration: 0.5,
+        ease: [0.4, 0, 0.2, 1]
+      }
+    })
+  };
+
+  const headerVariants = {
+    hidden: { 
+      y: -20, 
+      opacity: 0 
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        delay: 0.1,
+        duration: 0.5,
+        ease: [0.4, 0, 0.2, 1]
+      }
+    }
+  };
+
+  const imageVariants = {
+    hidden: { 
+      scale: 0.5, 
+      opacity: 0,
+      rotate: 0
+    },
+    visible: (custom) => ({
+      scale: custom.scale,
+      opacity: custom.opacity,
+      rotate: custom.rotate,
+      transition: {
+        delay: custom.delay,
+        duration: 0.8,
+        ease: [0.4, 0, 0.2, 1]
+      }
+    })
+  };
 
   return (
     <>
@@ -86,41 +171,19 @@ const Header = () => {
                 <User className="h-4 w-4" />
               </Button>
 
-              {/* Burger Menu */}
-              <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                <SheetTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    className="w-10 h-10 rounded-md text-black hover:text-[#F1B213] hover:bg-transparent border-0 flex items-center justify-center"
-                  >
-                    <Menu style={{ width: "28px", height: "28px" }} />
-                  </Button>
-                </SheetTrigger>
-
-                <SheetContent side="right" className="w-72 bg-background">
-                  <div className="flex flex-col space-y-5 mt-6">
-                    <div className="flex items-center space-x-2 mb-6">
-                      <img
-                        src={LogoWC}
-                        alt="Wild Crunch Logo"
-                        className="h-8 w-auto"
-                      />
-                    </div>
-
-                    <nav className="flex flex-col space-y-3">
-                      {menuItems.map((item) => (
-                        <button
-                          key={item.name}
-                          onClick={() => handleNavigation(item.path)}
-                          className="text-left text-base font-medium text-foreground hover:text-primary transition-colors py-1.5"
-                        >
-                          {item.name}
-                        </button>
-                      ))}
-                    </nav>
-                  </div>
-                </SheetContent>
-              </Sheet>
+              {/* Burger Menu - Custom Implementation */}
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button
+                  variant="ghost"
+                  className="w-10 h-10 rounded-md text-black hover:text-[#F1B213] hover:bg-transparent border-0 flex items-center justify-center"
+                  onClick={() => setIsOpen(true)}
+                >
+                  <Menu style={{ width: "28px", height: "28px" }} />
+                </Button>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -140,6 +203,125 @@ const Header = () => {
           />
         </svg>
       </header>
+
+      {/* Custom Menu Sidebar with Framer Motion */}
+<AnimatePresence>
+  {isOpen && (
+    <>
+      {/* Backdrop */}
+      <motion.div
+        className="fixed inset-0 bg-black bg-opacity-50 z-[100]"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        onClick={() => setIsOpen(false)}
+      />
+
+      {/* Menu Sidebar */}
+      <motion.div
+        className="fixed top-0 right-0 h-full w-[300px] sm:w-[500px] bg-white z-[101] overflow-hidden"
+        initial={{ x: "100%" }}
+        animate={{ x: 0 }}
+        exit={{ x: "100%" }}
+        transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+      >
+        {/* Background Images Layer */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <motion.img
+            src={img1}
+            alt="bg-1"
+            className="absolute opacity-40"
+            style={{ top: "-25%", left: "15%" }}
+            initial={{ scale: 0.8, rotate: 0, opacity: 0 }}
+            animate={{ scale: 0.9, rotate: 25, opacity: 0.4 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          />
+          <motion.img
+            src={img2}
+            alt="bg-2"
+            className="absolute opacity-40"
+            style={{ top: "10%", left: "7%" }}
+            initial={{ scale: 0.6, rotate: 0, opacity: 0 }}
+            animate={{ scale: 0.7, rotate: -50, opacity: 0.4 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+          />
+          <motion.img
+            src={img3}
+            alt="bg-3"
+            className="absolute opacity-70"
+            style={{ top: "55%", left: "35%" }}
+            initial={{ scale: 1, rotate: 0, opacity: 0 }}
+            animate={{ scale: 1.2, rotate: -30, opacity: 0.7 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+          />
+          <motion.img
+            src={img4}
+            alt="bg-4"
+            className="absolute opacity-50"
+            style={{ top: "40%", left: "-35%" }}
+            initial={{ scale: 0.7, rotate: 0, opacity: 0 }}
+            animate={{ scale: 0.9, rotate: 25, opacity: 0.5 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+          />
+        </div>
+
+        {/* Actual Menu Content */}
+        <div className="relative z-20 p-6">
+          {/* Header with Back Arrow + Title */}
+          <motion.div
+            className="flex items-center space-x-3 mt-16 mb-8"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            <motion.button
+              onClick={() => setIsOpen(false)}
+              className="p-1"
+              whileHover={{ scale: 1.1, x: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <ArrowLeft className="w-6 h-6 text-black" />
+            </motion.button>
+            <h2 className="font-suez text-3xl text-[#212121]">Menu</h2>
+          </motion.div>
+
+          {/* Navigation Links */}
+          <nav className="space-y-3 mt-16">
+            {menuItems.map((item, index) => (
+              <motion.div
+                key={item.name}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4 + index * 0.1 }}
+              >
+                <motion.button
+                  onClick={() => handleNavigation(item.path)}
+                  className="text-left font-suez text-lg text-[#212121] hover:text-[#DD815C] transition-colors w-full py-2"
+                  whileHover={{ x: 10, transition: { duration: 0.2 } }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {item.name}
+                </motion.button>
+                <motion.hr
+                  className="border-b-2 border-dotted border-[#212121] w-1/2 mt-1"
+                  initial={{ width: 0 }}
+                  animate={{ width: "50%" }}
+                  transition={{
+                    delay: 0.5 + index * 0.1,
+                    duration: 0.5,
+                    ease: [0.4, 0, 0.2, 1],
+                  }}
+                />
+              </motion.div>
+            ))}
+          </nav>
+        </div>
+      </motion.div>
+    </>
+  )}
+</AnimatePresence>
+
 
       {/* Cart Sidebar - Pass props to Cart component */}
       <Cart isOpen={cartOpen} onClose={() => setCartOpen(false)} />
