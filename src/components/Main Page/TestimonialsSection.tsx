@@ -30,7 +30,7 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <section className="py-10 bg-[#F8F7E5]">
+<section id="testimonials" className="py-10 bg-[#F8F7E5]">
       <div className="container mx-auto px-6">
         {/* Curved Heading */}
         <div className="flex justify-center mb-8">

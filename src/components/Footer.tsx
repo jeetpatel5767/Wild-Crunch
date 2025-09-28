@@ -93,6 +93,25 @@ const Footer = () => {
     }
   };
 
+  const handleTestimonialClick = (e) => {
+  e.preventDefault();
+  
+  // Check if we're on the homepage
+  if (window.location.pathname === '/') {
+    // We're on homepage, just scroll to section
+    const element = document.getElementById('testimonials');
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  } else {
+    // We're on another page, navigate to homepage with hash
+    window.location.href = '/#testimonials';
+  }
+};
+
   return (
     <motion.footer 
       initial={{ opacity: 0 }}
@@ -225,11 +244,13 @@ const Footer = () => {
             >
               LEARN
             </motion.h3>
+
+            
 <ul className="space-y-2">
   {[
     { label: "Home", path: "/" },
     { label: "Products", path: "/products" },
-    { label: "Testimonial", path: "/testimonial" },
+    { label: "Testimonial", path: "#testimonials", onClick: handleTestimonialClick },
     { label: "Cart", path: "/cart" },
     { label: "WishList", path: "/wishlist" },
   ].map((link) => (
@@ -237,6 +258,7 @@ const Footer = () => {
       <motion.a
         href={link.path}
         className="text-[#466DDF] font-jost"
+        onClick={link.onClick || undefined}
         whileHover={{
           color: "#275AF3",
           x: 10,
@@ -436,19 +458,24 @@ const Footer = () => {
 <ul className="space-y-2">
   {[
     { label: "Home", path: "/" },
-    { label: "Product", path: "/product" },
-    { label: "Testimonial", path: "/testimonial" },
+    { label: "Products", path: "/products" },
+    { label: "Testimonial", path: "#testimonials", onClick: handleTestimonialClick },
     { label: "Cart", path: "/cart" },
     { label: "WishList", path: "/wishlist" },
-  ].map((link, index) => (
-    <motion.li
-      key={link.label}
-      initial={{ opacity: 0, x: 15 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ delay: 1.0 + index * 0.1, duration: 0.5 }}
-      className="text-[#466DDF] font-jost"
-    >
-      <a href={link.path}>{link.label}</a>
+  ].map((link) => (
+    <motion.li key={link.label} variants={linkVariants}>
+      <motion.a
+        href={link.path}
+        className="text-[#466DDF] font-jost"
+        onClick={link.onClick || undefined}
+        whileHover={{
+          color: "#275AF3",
+          x: 10,
+          transition: { duration: 0.3 },
+        }}
+      >
+        {link.label}
+      </motion.a>
     </motion.li>
   ))}
 </ul>

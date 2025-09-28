@@ -25,8 +25,8 @@ const LoginPage = () => {
   return (
     <div className="relative w-full min-h-screen bg-[#F8F7E5] flex flex-col items-center justify-center overflow-hidden">
 
-      {/* Background floating images */}
-     <div className="absolute inset-0 pointer-events-none z-0">
+      {/* Background floating images - Hidden on mobile (sm and below) */}
+     <div className="absolute inset-0 pointer-events-none z-0 hidden md:block">
   {/* Top-Left Image */}
   <motion.img
     src={img1}

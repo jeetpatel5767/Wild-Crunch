@@ -105,21 +105,23 @@ const OurWork = () => {
     <div className="bg-[#F8F7E5] py-16 lg:py-24 overflow-hidden relative" ref={containerRef}>
       
       {/* SVG Layer for Drawing Lines */}
-      <svg className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
-        {isReady && linePaths.map((path, i) => (
-          <motion.path
-            key={`${i}-${path}`}
-            d={path}
-            stroke="#bca586"
-            strokeWidth="2"
-            fill="none"
-            strokeDasharray="6 6"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          />
-        ))}
-      </svg>
+{/* SVG Layer for Drawing Lines - only visible on large screens */}
+<svg className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 hidden lg:block">
+  {isReady && linePaths.map((path, i) => (
+    <motion.path
+      key={`${i}-${path}`}
+      d={path}
+      stroke="#bca586"
+      strokeWidth="2"
+      fill="none"
+      strokeDasharray="6 6"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8, delay: 0.8 }}
+    />
+  ))}
+</svg>
+
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header Section */}

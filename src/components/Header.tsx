@@ -1,6 +1,6 @@
 import { Heart, ShoppingCart, User, Menu, ArrowLeft, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import LogoWC from "../assets/LogoWC.png"; 
@@ -15,8 +15,53 @@ const images = [img1, img2, img3, img4];
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false); // burger menu
   const [cartOpen, setCartOpen] = useState(false); // cart sidebar toggle
+  const [isVisible, setIsVisible] = useState(true); // header visibility
+  const [lastScrollY, setLastScrollY] = useState(0); // track last scroll position
+  const [pathData, setPathData] = useState(""); // store ECG path data
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Generate ECG path only once when component mounts
+  useEffect(() => {
+    const generateRandomPath = () => {
+      const width = 1200;
+      const segments = 100;
+      const segmentWidth = width / segments;
+      let path = `M0,14`;
+      for (let i = 1; i <= segments; i++) {
+        const y = 5 + Math.random() * 18;
+        const x = i * segmentWidth;
+        path += ` Q${x - segmentWidth / 2},${y} ${x},14`;
+      }
+      return path;
+    };
+    
+    setPathData(generateRandomPath());
+  }, []); // Empty dependency array ensures this runs only once
+
+  // Scroll detection effect
+  useEffect(() => {
+    const controlHeader = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+        // Scrolling down and past 80px
+        setIsVisible(false);
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up
+        setIsVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    const throttledControlHeader = () => {
+      requestAnimationFrame(controlHeader);
+    };
+
+    window.addEventListener('scroll', throttledControlHeader, { passive: true });
+    return () => window.removeEventListener('scroll', throttledControlHeader);
+  }, [lastScrollY]);
 
   const menuItems = [
     { name: "Home", path: "/" },
@@ -34,20 +79,7 @@ const Header = () => {
     setIsOpen(false);
   };
 
-  // Random ECG path
-  const generateRandomPath = () => {
-    const width = 1200;
-    const segments = 100;
-    const segmentWidth = width / segments;
-    let path = `M0,14`;
-    for (let i = 1; i <= segments; i++) {
-      const y = 5 + Math.random() * 18;
-      const x = i * segmentWidth;
-      path += ` Q${x - segmentWidth / 2},${y} ${x},14`;
-    }
-    return path;
-  };
-  const pathData = generateRandomPath();
+  // Random ECG path - moved to useEffect above
 
   // Animation variants
   const backdropVariants = {
@@ -127,7 +159,9 @@ const Header = () => {
 
   return (
     <>
-      <header className="bg-[#F8F7E5] sticky top-0 z-50 relative">
+      <header className={`bg-[#F8F7E5] fixed top-0 left-0 right-0 z-[60] transition-transform duration-300 ease-in-out ${
+        isVisible ? 'transform translate-y-0' : 'transform -translate-y-full'
+      }`}>
         <div className="container mx-auto px-4 py-2.5">
           <div className="flex items-center justify-between">
             {/* Logo */}
