@@ -134,7 +134,7 @@ const Footer = () => {
         </h2>
 
         {/* Explore + Learn row */}
-        <div className="flex justify-between px-4">
+        <div className="flex justify-between px-12">
           {/* Explore */}
           <div className="flex flex-col text-left">
             <h3 className="font-jost font-bold text-[#275AF3] text-lg mb-2">EXPLORE</h3>

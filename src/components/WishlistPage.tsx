@@ -37,7 +37,7 @@ const WishlistPage = () => {
       <Header />
 
       {/* Section */}
-      <section className="container mx-auto px-4 py-12 sm:py-24">
+      <section className="container mx-auto px-4 py-12 sm:py-24 mt-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="flex items-center justify-center">
             <h2 className="text-4xl md:text-7xl font-bold font-suez text-foreground">

@@ -64,15 +64,16 @@ const InProduct = () => {
         />
 
         {/* Back button */}
-        <button
-          onClick={handleClose}
-          className="absolute top-24 left-4 bg-white/20 p-2 rounded-full z-[9999]"
-        >
-          <ArrowLeft />
-        </button>
+<button
+  onClick={handleClose}
+  className="absolute top-24 left-4 bg-white/20 p-2 rounded-full z-[9999] hidden md:block"
+>
+  <ArrowLeft />
+</button>
+
 
         {/* Modal content */}
-        <div className="relative w-full h-full flex flex-col items-center justify-start px-4 pt-20 z-50 overflow-y-auto overflow-x-hidden hide-scrollbar">
+        <div className="relative w-full h-full flex flex-col items-center justify-start px-4 pt-20 z-50 overflow-y-auto overflow-x-hidden hide-scrollbar mt-12 sm:mt-24">
           <div className="w-full max-w-[1300px] mx-auto">
             {/* Mobile Layout */}
             <div className="block lg:hidden">
@@ -100,77 +101,80 @@ const InProduct = () => {
               </motion.div>
 
               {/* Product Image and Features Row */}
-              <div className="flex gap-6 mb-8">
-                {/* Product Image */}
-                <motion.div
-                  className="flex-shrink-0"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.6, duration: 0.5 }}
-                >
-                  <div className="rounded-[40px] border-dashed border-2 border-white p-4">
-                    <div className="rounded-[40px] border border-white  flex justify-center items-center">
-<motion.img
-  key={`modal-image-${selectedProduct.id}`}
-  layoutId={`product-image-${selectedProduct.id}`}
-  src={selectedProduct.imageSrc}
-  alt={selectedProduct.name}
-  className="w-[200px] h-[230px]"
-  initial={{ scale: 1 }}
-  animate={{ scale: 1.3 }} // zoomed in
-  transition={{ duration: 0.3 }}
-/>
-                    </div>
-                  </div>
-                </motion.div>
+<div className="flex gap-6 mb-8">
+  {/* Product Image */}
+  <motion.div
+    className="flex-shrink-0"
+    initial={{ opacity: 0, scale: 0.8 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ delay: 0.6, duration: 0.5 }}
+  >
+    <div className="rounded-[40px] border-dashed border-2 border-white p-4">
+      <div className="rounded-[40px] border border-white flex justify-center items-center">
+        <motion.img
+          key={`modal-image-${selectedProduct.id}`}
+          layoutId={`product-image-${selectedProduct.id}`}
+          src={selectedProduct.imageSrc}
+          alt={selectedProduct.name}
+          className="w-[160px] h-[180px] sm:w-[200px] sm:h-[230px] md:w-[220px] md:h-[250px] lg:w-[240px] lg:h-[270px]"
+          initial={{ scale: 1 }}
+          animate={{ scale: 1.3 }}
+          transition={{ duration: 0.3 }}
+        />
+      </div>
+    </div>
+  </motion.div>
 
-                {/* Features and Action Buttons */}
-                <motion.div
-                  className="flex-1"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7, duration: 0.5 }}
-                >
-                  {/* Features */}
-                  <div className="space-y-3 mb-6">
-                    <div className="text-white font-suez text-sm py-2 border-b border-dashed border-white">
-                      <span>Made with Multigrams</span>
-                    </div>
-                    <div className="text-white font-suez text-sm py-2 border-b border-dashed border-white">
-                      <span>Fried Not Baked</span>
-                    </div>
-                    <div className="text-white font-suez text-sm py-2 border-b border-dashed border-white">
-                      <span>High Protein</span>
-                    </div>
-                    <div className="text-white font-suez text-sm py-2 border-b border-dashed border-white">
-                      <span>Low In Cholesterol</span>
-                    </div>
-                  </div>
+  {/* Features and Action Buttons */}
+  <motion.div
+    className="flex-1"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay: 0.7, duration: 0.5 }}
+  >
+    {/* Features */}
+    <div className="space-y-3 mb-6">
+      <div className="text-white font-suez text-xs sm:text-sm md:text-base py-2 border-b border-dashed border-white">
+        <span>Made with Multigrams</span>
+      </div>
+      <div className="text-white font-suez text-xs sm:text-sm md:text-base py-2 border-b border-dashed border-white">
+        <span>Fried Not Baked</span>
+      </div>
+      <div className="text-white font-suez text-xs sm:text-sm md:text-base py-2 border-b border-dashed border-white">
+        <span>High Protein</span>
+      </div>
+      <div className="text-white font-suez text-xs sm:text-sm md:text-base py-2 border-b border-dashed border-white">
+        <span>Low In Cholesterol</span>
+      </div>
+    </div>
 
-                  {/* Action Buttons */}
-                  <motion.div
-                    className="space-y-3"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.8, duration: 0.5 }}
-                  >
-                    <div className="flex items-center gap-2">
-                      <div className="flex items-center border border-white rounded-full px-3 py-1 bg-transparent">
-                        <button className="px-1 text-white font-suez text-sm">-</button>
-                        <span className="px-2 text-white font-suez text-sm">1</span>
-                        <button className="px-1 text-white font-suez text-sm">+</button>
-                      </div>
-                      <button className="border border-white rounded-full p-1 bg-transparent">
-                        <Heart size={16} className="text-white" />
-                      </button>
-                    </div>
-                    <button className="w-full bg-[#F1B213] text-white py-2 rounded-full font-jost font-semibold text-sm">
-                      ADD TO CART
-                    </button>
-                    <p className="text-white text-xs text-center">3000+ Happy Customers</p>
-                  </motion.div>
-                </motion.div>
-              </div>
+    {/* Action Buttons */}
+    <motion.div
+      className="space-y-3"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.8, duration: 0.5 }}
+    >
+      <div className="flex items-center gap-2">
+        <div className="flex items-center border border-white rounded-full px-2 sm:px-3 py-1 bg-transparent">
+          <button className="px-1 text-white font-suez text-xs sm:text-sm">-</button>
+          <span className="px-2 text-white font-suez text-xs sm:text-sm">1</span>
+          <button className="px-1 text-white font-suez text-xs sm:text-sm">+</button>
+        </div>
+        <button className="border border-white rounded-full p-1 bg-transparent">
+          <Heart size={14} className="text-white sm:w-4 sm:h-4" />
+        </button>
+      </div>
+      <button className="w-full bg-[#F1B213] text-white py-2 rounded-full font-jost font-semibold text-xs sm:text-sm md:text-base">
+        ADD TO CART
+      </button>
+      <p className="text-white text-[10px] sm:text-xs md:text-sm text-center">
+        3000+ Happy Customers
+      </p>
+    </motion.div>
+  </motion.div>
+</div>
+
 
               {/* Ingredients */}
               <motion.div

@@ -11,7 +11,7 @@ const Contact = () => {
       <section className="relative w-full mt-2">
         {/* Background with text */}
         <div
-          className="relative w-[full] min-h-[80vh] flex items-start justify-center"
+          className="relative w-[full] min-h-[80vh] flex items-start justify-center mt-12"
           style={{
             backgroundImage: `url(${HeroImg})`,
             backgroundSize: "cover",

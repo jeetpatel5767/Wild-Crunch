@@ -61,7 +61,7 @@ const AddressPage = () => {
       <Header />
 
       {/* Progress Steps */}
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 mt-24">
 <div className="flex items-center justify-center mb-8 relative w-full">
   {/* Gray background line */}
   <div className="absolute top-2 left-0 right-0 h-0.5 bg-gray-300 z-0"></div>

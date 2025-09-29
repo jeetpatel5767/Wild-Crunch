@@ -178,23 +178,23 @@ const Header = () => {
 
             {/* Actions */}
             <div className="flex items-center space-x-2.5">
-              {/* Wishlist */}
+              {/* Wishlist - Now visible on both mobile and desktop */}
               <Button
                 variant="ghost"
                 size="icon"
-                className="hidden sm:flex w-8 h-8 rounded-full border border-black text-black hover:bg-[#F1B213] hover:text-white hover:border-[#F1B213]"
+                className="sm:w-8 sm:h-8 w-10 h-10 rounded-full border border-black text-black hover:bg-[#F1B213] hover:text-white hover:border-[#F1B213]"
                 onClick={() => navigate("/wishlist")}
               >
                 <Heart className="h-4 w-4" />
               </Button>
 
-              {/* Cart button */}
+              {/* Cart button - Text hidden on mobile, visible on desktop */}
               <Button
-                className="flex items-center gap-1.5 bg-[#F1B213] text-white px-5 py-1.5 rounded-full text-xs font-semibold hover:bg-[#F8F7E5] hover:text-black"
+                className="flex items-center gap-1.5 bg-[#F1B213] text-white px-3 sm:px-5 py-1.5 rounded-full text-xs font-semibold hover:bg-[#F8F7E5] hover:text-black"
                 onClick={() => setCartOpen(true)} // open cart directly
               >
                 <ShoppingCart className="h-5 w-5" />
-                <span className="font-sfpro">CART</span>
+                <span className="font-sfpro hidden sm:inline">CART</span>
               </Button>
 
               {/* User */}

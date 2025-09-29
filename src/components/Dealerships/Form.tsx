@@ -121,8 +121,8 @@ const Form = () => {
                   </motion.div>
 
                   {/* Captcha */}
-                  <motion.div
-                    className="flex justify-end"
+<motion.div
+                    className="flex justify-center sm:justify-end"
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}

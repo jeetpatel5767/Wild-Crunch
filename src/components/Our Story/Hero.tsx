@@ -5,7 +5,7 @@ import hero2 from "@/assets/Ourstory_Hero2.png";
 
 const Hero = () => {
   return (
-    <div className="w-full bg-[#F8F7E5] py-24 px-6 relative overflow-hidden">
+    <div className="w-full bg-[#F8F7E5] py-24 px-6 sm:mt-10 relative overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
         {/* Right side content (heading + text) */}
         <motion.div 
