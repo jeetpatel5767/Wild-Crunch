@@ -127,7 +127,7 @@ const Footer = () => {
       </div>
 
       {/* ================= Mobile View ================= */}
-      <div className="relative z-10 flex flex-col lg:hidden px-6 py-6">
+      <div className="relative z-10 flex flex-col lg:hidden px-6 py-6 mt-10">
         {/* Heading */}
         <h2 className="text-center font-suez text-[#325DE8] text-3xl leading-snug mb-8 px-4">
           Thank You For Your Curiosity.

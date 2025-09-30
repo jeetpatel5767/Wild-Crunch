@@ -173,10 +173,12 @@ const Products = () => {
     key={`product-image-${product.id}-${index}`}
     src={product.imageSrc}
     alt={product.name}
-    className={`max-w-none h-auto mx-auto transform transition-transform duration-500 hover:-rotate-12 ${
-      product.category === "Combo"
-        ? "w-[200px] sm:w-[250px]"
-        : "w-[350px] sm:w-[420px]"
+    className={`max-w-none mx-auto transform transition-transform duration-500 hover:-rotate-12 ${
+      product.category === "Combo" && index === 0
+        ? "w-[230px] h-[250px] sm:w-[350px] sm:h-[280px] -mt-8 object-contain"
+        : product.category === "Combo"
+        ? "w-[200px] sm:w-[250px] h-auto"
+        : "w-[300px] mt-8 sm:mt-0 sm:w-[420px] h-auto"
     }`}
   />
 </motion.div>

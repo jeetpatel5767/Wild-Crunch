@@ -45,10 +45,10 @@ const Cart = ({ isOpen, onClose }: CartProps) => {
           animate={{ x: 0 }}
           exit={{ x: "100%" }}
           transition={{ type: "tween", duration: 0.3 }}
-          className="fixed top-0 right-0 w-[400px] h-full bg-[#F8F7E5] shadow-2xl z-50 flex flex-col"
+          className="fixed top-0 right-0 w-[400px] h-full bg-[#F8F7E5] shadow-2xl z-[9999] flex flex-col"
         >
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b border-dashed border-black font-suez text-lg">
+          <div className="flex items-center justify-between p-4 border-b border-dashed border-black font-suez text-lg mt-24">
             <span>Product Added To Cart</span>
             <button onClick={onClose}>
               <X size={20} />

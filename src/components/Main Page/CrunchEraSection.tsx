@@ -179,7 +179,7 @@ const CrunchEraSection = () => {
                     variants={imageVariants}
                     src={product.imageSrc}
                     alt={product.name.join(" ")}
-                    className={`max-w-none ${index === 5 ? 'w-[120px] sm:w-[350px]' : 'w-[160px] sm:w-[400px]'} h-auto mx-auto`}
+                    className={`max-w-none ${index === 5 ? 'w-[120px] sm:w-[330px] mt-16' : 'w-[160px] sm:w-[400px]'} h-auto mx-auto`}
                     whileHover={{
                       rotate: -15,
                       scale: 1.1,
