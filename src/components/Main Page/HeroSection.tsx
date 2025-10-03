@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
-import HeroImg from "@/assets/HeroImg.png"; // your background image
-import { motion } from "framer-motion"; // added
+import HeroImg from "@/assets/HeroImg.png";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const HeroSection = () => {
+  const navigate = useNavigate(); // ✅ hook inside the component
+
   return (
     <section className="relative w-full">
       {/* Bigger Top gap */}
@@ -36,6 +39,7 @@ const HeroSection = () => {
           <Button
             size="lg"
             className="font-sfpro font-light bg-[#F1B213] hover:bg-[#d99c10] text-white px-8 py-6 text-lg rounded-full shadow-warm"
+            onClick={() => navigate("/products")} // ✅ works now
           >
             SHOP NOW
           </Button>

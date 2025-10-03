@@ -1,8 +1,11 @@
 import productGrid from "@/assets/Our Story_BG.png";
 import { ArrowDown, ChevronDown } from "lucide-react";
-import { motion } from "framer-motion"; // added
+import { motion } from "framer-motion"; 
+import { useNavigate } from "react-router-dom"; // ✅ import useNavigate
 
 const ProductGrid = () => {
+  const navigate = useNavigate(); // ✅ inside the component
+
   return (
     <section className="py-20 bg-[#F8F7E5] text-center">
       {/* Top text with custom arrow */}
@@ -69,7 +72,10 @@ const ProductGrid = () => {
         viewport={{ once: false, amount: 0.3 }}
         transition={{ type: "spring", stiffness: 80, damping: 20, duration: 1, delay: 0.4 }}
       >
-        <button className="font-sfpro text-sm uppercase tracking-wide px-8 py-3 border border-[#C06441] text-[#C06441] rounded-full hover:bg-[#F1B213] hover:border-[#F1B213] hover:text-white transition-colors">
+        <button
+          className="font-sfpro text-sm uppercase tracking-wide px-8 py-3 border border-[#C06441] text-[#C06441] rounded-full hover:bg-[#F1B213] hover:border-[#F1B213] hover:text-white transition-colors"
+          onClick={() => navigate("/our-story")} // ✅ navigate to internal route
+        >
           Discover More
         </button>
       </motion.div>
