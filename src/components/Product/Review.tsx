@@ -93,7 +93,7 @@ const Review = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="w-screen h-auto bg-[#F8F7E5] flex flex-col items-center py-16 gap-12 mt-24"
+      className="w-screen h-auto bg-[#F8F7E5] flex flex-col items-center py-16 gap-12"
     >
       {/* First Review Div */}
       <motion.div 
