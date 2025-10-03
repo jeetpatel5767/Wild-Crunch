@@ -2,9 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 // Import your local images from assets
-import ProteinPuff from '@/assets/ProteinPuff.png';
-import PopCorn from '@/assets/PopCorn.png';
-import CrunchyMakhana from '@/assets/CrunchyMakhana.png';
+import ProteinPuff from '@/assets/proteinpuff.png';
+import PopCorn from '@/assets/popcorn.png';
+import CrunchyMakhana from '@/assets/crunchymakhana.png';
 
 const Others = () => {
   const products = [
