@@ -19,7 +19,7 @@ const HeroSection = () => {
       >
         {/* Content with animation */}
         <motion.div
-          className="relative z-10 text-center px-4 mt-4 lg:mt-10"
+          className="relative z-10 text-center px-4 mt-24 lg:mt-16"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}

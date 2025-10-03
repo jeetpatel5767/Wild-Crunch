@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Top from "@/components/Main Page/Top";
-import Header from "@/components/Header";
+import Header from "@/components/Main Page/Main_Header";
 import HeroSection from "@/components/Main Page/HeroSection";
 import ProductGrid from "@/components/Main Page/ProductGrid";
 import ProteinSection from "@/components/Main Page/ProteinSection";
@@ -36,20 +36,23 @@ const Index = () => {
     }
   }, [location.hash]);
 
-  return (
-    <div className="min-h-screen bg-background">
-      <Top />
-      <Header />
-      <HeroSection />
-      <ProductGrid />
-      <ProteinSection />
-      <CrunchEraSection />
-      <WelcomeSection />
-      <CommunitySection />
-      <TestimonialsSection />
-      <Footer />
-    </div>
-  );
+return (
+  <div className="min-h-screen bg-background">
+    {/* Top bar only on Index */}
+  <Top />
+      <Header/>
+
+    <HeroSection />
+    <ProductGrid />
+    <ProteinSection />
+    <CrunchEraSection />
+    <WelcomeSection />
+    <CommunitySection />
+    <TestimonialsSection />
+    <Footer />
+  </div>
+);
+;
 };
 
 export default Index;

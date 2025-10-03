@@ -1,9 +1,12 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, useInView, Variants } from "framer-motion";
 import LogoWC from "../assets/LogoWC.png";
 import { Instagram, Linkedin, Twitter } from "lucide-react";
 
 const Footer = () => {
+  const footerRef = useRef(null);
+  const isInView = useInView(footerRef, { once: true, amount: 0.2 });
+
   // Generate a smooth random ECG/heartbeat-like path
   const generateRandomPath = (width = 1200, segments = 80) => {
     const segmentWidth = width / segments;
@@ -18,7 +21,7 @@ const Footer = () => {
 
   const pathData = generateRandomPath();
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -29,7 +32,7 @@ const Footer = () => {
     }
   };
 
-  const sectionVariants = {
+  const sectionVariants: Variants = {
     hidden: { 
       opacity: 0, 
       y: 50,
@@ -40,27 +43,27 @@ const Footer = () => {
       y: 0,
       scale: 1,
       transition: {
-        type: "spring" as const,
+        type: "spring",
         damping: 20,
         stiffness: 100
       }
     }
   };
 
-  const linkVariants = {
+  const linkVariants: Variants = {
     hidden: { opacity: 0, x: -20 },
     visible: {
       opacity: 1,
       x: 0,
       transition: {
-        type: "spring" as const,
+        type: "spring",
         damping: 25,
         stiffness: 120
       }
     }
   };
 
-  const logoVariants = {
+  const logoVariants: Variants = {
     hidden: { 
       opacity: 0, 
       scale: 0.5,
@@ -71,14 +74,14 @@ const Footer = () => {
       scale: 1,
       rotate: -20,
       transition: {
-        type: "spring" as const,
+        type: "spring",
         damping: 15,
         stiffness: 150
       }
     }
   };
 
-  const pathVariants = {
+  const pathVariants: Variants = {
     hidden: { 
       pathLength: 0,
       opacity: 0
@@ -94,28 +97,29 @@ const Footer = () => {
   };
 
   const handleTestimonialClick = (e) => {
-  e.preventDefault();
-  
-  // Check if we're on the homepage
-  if (window.location.pathname === '/') {
-    // We're on homepage, just scroll to section
-    const element = document.getElementById('testimonials');
-    if (element) {
-      element.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
+    e.preventDefault();
+    
+    // Check if we're on the homepage
+    if (window.location.pathname === '/') {
+      // We're on homepage, just scroll to section
+      const element = document.getElementById('testimonials');
+      if (element) {
+        element.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    } else {
+      // We're on another page, navigate to homepage with hash
+      window.location.href = '/#testimonials';
     }
-  } else {
-    // We're on another page, navigate to homepage with hash
-    window.location.href = '/#testimonials';
-  }
-};
+  };
 
   return (
     <motion.footer 
+      ref={footerRef}
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
       transition={{ duration: 0.8 }}
       className="relative w-full min-h-[70vh] lg:min-h-[40vh] bg-[#F8F7E5] overflow-hidden"
     >
@@ -123,7 +127,7 @@ const Footer = () => {
       <div className="absolute inset-0 z-0">
         <motion.svg
           initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
+          animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
           viewBox="0 0 1440 1400"
           preserveAspectRatio="none"
@@ -131,7 +135,7 @@ const Footer = () => {
         >
           <motion.path
             initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
+            animate={isInView ? { pathLength: 1 } : { pathLength: 0 }}
             transition={{ duration: 2, ease: "easeInOut" }}
             d="M0,120 C150,60 350,40 500,90 C650,140 850,70 1000,110 C1150,150 1350,95 1440,115 L1440,1400 L0,1400 Z"
             fill="#FCEB81"
@@ -144,9 +148,9 @@ const Footer = () => {
         {/* Large heading */}
         <motion.h2
           initial={{ opacity: 0, y: -50, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
+          animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: -50, scale: 0.9 }}
           transition={{ 
-            type: "spring" as const,
+            type: "spring",
             damping: 20,
             stiffness: 100,
             delay: 0.5
@@ -166,7 +170,7 @@ const Footer = () => {
         <motion.div 
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          animate={isInView ? "visible" : "hidden"}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 items-start w-full"
         >
           {/* Logo (tilted) */}
@@ -181,14 +185,14 @@ const Footer = () => {
                 scale: 1.1,
                 transition: { duration: 0.5 }
               }}
-              animate={{
+              animate={isInView ? {
                 rotate: [-20, -15, -25, -20],
                 transition: {
                   repeat: Infinity,
                   duration: 4,
                   ease: "easeInOut"
                 }
-              }}
+              } : {}}
               className="transform -rotate-[20deg]"
             >
               <img
@@ -206,7 +210,7 @@ const Footer = () => {
           >
             <motion.h3 
               initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
               transition={{ delay: 0.8, duration: 0.6 }}
               className="font-jost font-bold text-[#275AF3] text-lg mb-4"
             >
@@ -238,7 +242,7 @@ const Footer = () => {
           >
             <motion.h3 
               initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
               transition={{ delay: 1.0, duration: 0.6 }}
               className="font-jost font-bold text-[#275AF3] text-lg mb-4"
             >
@@ -280,7 +284,7 @@ const Footer = () => {
           >
             <motion.h3 
               initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
               transition={{ delay: 1.2, duration: 0.6 }}
               className="font-jost font-bold text-[#275AF3] text-lg mb-4"
             >
@@ -288,7 +292,7 @@ const Footer = () => {
             </motion.h3>
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 1.4, duration: 0.6 }}
               className="text-[#466DDF] font-jost leading-relaxed text-sm"
             >
@@ -314,10 +318,10 @@ const Footer = () => {
         rel="noopener noreferrer"
         aria-label={`social-${index}`}
         initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
+        animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
         transition={{
           delay: 1.6 + index * 0.2,
-          type: "spring" as const,
+          type: "spring",
           damping: 15,
           stiffness: 200,
         }}
@@ -346,7 +350,7 @@ const Footer = () => {
         {/* Heartbeat / wavy line */}
         <motion.div 
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ delay: 3.0, duration: 0.8 }}
           className="mt-16 relative"
         >
@@ -358,7 +362,7 @@ const Footer = () => {
             <motion.path
               variants={pathVariants}
               initial="hidden"
-              animate="visible"
+              animate={isInView ? "visible" : "hidden"}
               d={pathData}
               fill="none"
               stroke="#466DDF"
@@ -371,7 +375,7 @@ const Footer = () => {
         {/* Bottom copyright */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ delay: 3.5, duration: 0.8 }}
           className="w-full"
         >
@@ -401,9 +405,9 @@ const Footer = () => {
         {/* Heading */}
         <motion.h2 
           initial={{ opacity: 0, y: -30, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
+          animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: -30, scale: 0.9 }}
           transition={{ 
-            type: "spring" as const,
+            type: "spring",
             damping: 20,
             stiffness: 100,
             delay: 0.3
@@ -416,7 +420,7 @@ const Footer = () => {
         {/* Explore + Learn row */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ delay: 0.6, duration: 0.8 }}
           className="flex justify-between mr-8 ml-8"
         >
@@ -424,7 +428,7 @@ const Footer = () => {
           <div className="flex flex-col text-left">
             <motion.h3 
               initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
               transition={{ delay: 0.8, duration: 0.6 }}
               className="font-jost font-bold text-[#275AF3] text-lg mb-2"
             >
@@ -435,7 +439,7 @@ const Footer = () => {
                 <motion.li 
                   key={item}
                   initial={{ opacity: 0, x: -15 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -15 }}
                   transition={{ delay: 1.0 + index * 0.1, duration: 0.5 }}
                   className="text-[#466DDF] font-jost"
                 >
@@ -449,7 +453,7 @@ const Footer = () => {
           <div className="flex flex-col text-left">
             <motion.h3 
               initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
               transition={{ delay: 0.8, duration: 0.6 }}
               className="font-jost font-bold text-[#275AF3] text-lg mb-2"
             >
@@ -486,7 +490,7 @@ const Footer = () => {
         {/* Custom border full screen */}
         <motion.div 
           initial={{ scaleX: 0, opacity: 0 }}
-          animate={{ scaleX: 1, opacity: 1 }}
+          animate={isInView ? { scaleX: 1, opacity: 1 } : { scaleX: 0, opacity: 0 }}
           transition={{ delay: 1.5, duration: 1.5 }}
           className="mt-6 w-screen relative right-6"
         >
@@ -497,7 +501,7 @@ const Footer = () => {
           >
             <motion.path
               initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
+              animate={isInView ? { pathLength: 1 } : { pathLength: 0 }}
               transition={{ delay: 1.8, duration: 2 }}
               d={pathData}
               fill="none"
@@ -511,7 +515,7 @@ const Footer = () => {
         {/* Location with heading + icons inline */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ delay: 2.2, duration: 0.8 }}
           className="mt-4"
         >
@@ -526,10 +530,10 @@ const Footer = () => {
                   href="#" 
                   aria-label={`social-mobile-${index}`}
                   initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
                   transition={{ 
                     delay: 2.4 + index * 0.2,
-                    type: "spring" as const,
+                    type: "spring",
                     damping: 15,
                     stiffness: 200
                   }}
@@ -548,7 +552,7 @@ const Footer = () => {
           {/* Address */}
           <motion.div 
             initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
             transition={{ delay: 2.8, duration: 0.6 }}
             className="text-[#466DDF] font-jost leading-relaxed text-sm mt-4 text-left"
           >
@@ -562,7 +566,7 @@ const Footer = () => {
         {/* Custom border full screen */}
         <motion.div 
           initial={{ scaleX: 0, opacity: 0 }}
-          animate={{ scaleX: 1, opacity: 1 }}
+          animate={isInView ? { scaleX: 1, opacity: 1 } : { scaleX: 0, opacity: 0 }}
           transition={{ delay: 3.0, duration: 1.5 }}
           className="mt-6 w-screen relative right-6"
         >
@@ -573,7 +577,7 @@ const Footer = () => {
           >
             <motion.path
               initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
+              animate={isInView ? { pathLength: 1 } : { pathLength: 0 }}
               transition={{ delay: 3.2, duration: 2 }}
               d={pathData}
               fill="none"
@@ -587,7 +591,7 @@ const Footer = () => {
         {/* Copyright */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ delay: 3.5, duration: 0.8 }}
           className="text-left text-[#466DDF] mt-4"
         >

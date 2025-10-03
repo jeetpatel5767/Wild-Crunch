@@ -5,7 +5,7 @@ const Top: React.FC = () => {
   const items = Array(50).fill("Happy client");
 
   return (
-    <div className="w-full overflow-hidden py-2 bg-[#f1b213]">
+    <div className="w-full overflow-hidden py-2 bg-[#f1b213] z-[61] relative">
       <div className="flex animate-marquee whitespace-nowrap gap-24">
         {items.map((text, idx) => (
           <div

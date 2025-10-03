@@ -33,7 +33,7 @@ const WishlistPage = () => {
   const wishlistProducts: Product[] = wishlist.slice(0, 6);
 
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="min-h-screen bg-[#F8F7E5] relative">
       <Header />
 
       {/* Section */}
