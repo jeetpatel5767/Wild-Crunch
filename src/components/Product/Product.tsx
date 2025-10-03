@@ -92,7 +92,7 @@ const Products = () => {
 
           {/* Mobile Filter Drawer */}
           {isFilterOpen && (
-            <div className="fixed inset-0 z-50 flex">
+            <div className="fixed inset-0 z-[100] flex">
               {/* Backdrop */}
               <div
                 className="flex-1 bg-black/50"

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { ChevronLeft, Minus, Plus, Trash2 } from 'lucide-react';
 import Header from '../Header'; // Import your existing header
-
+import Img1 from "@/assets/1.png"
+import Img2 from "@/assets/2.png"
 // Mock cart data - using the same products from the popup
 const initialCartItems = [
   {
@@ -9,14 +10,14 @@ const initialCartItems = [
     name: "HABANERO CHILLY",
     price: 40,
     quantity: 4,
-    imageSrc: "/api/placeholder/150/200", // Replace with your actual image path
+    imageSrc: Img1, 
   },
   {
     id: "2", 
     name: "HABANERO CHILLY",
     price: 40,
     quantity: 3,
-    imageSrc: "/api/placeholder/150/200", // Replace with your actual image path
+    imageSrc: Img2, 
   },
 ];
 
