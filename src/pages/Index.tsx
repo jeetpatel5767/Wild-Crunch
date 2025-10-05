@@ -7,6 +7,7 @@ import ProductGrid from "@/components/Main Page/ProductGrid";
 import ProteinSection from "@/components/Main Page/ProteinSection";
 import CrunchEraSection from "@/components/Main Page/CrunchEraSection";
 import WelcomeSection from "@/components/Main Page/WelcomeSection";
+import Blog from "@/components/Main Page/Blog";
 import CommunitySection from "@/components/Main Page/CommunitySection";
 import TestimonialsSection from "@/components/Main Page/TestimonialsSection";
 import Footer from "@/components/Footer";
@@ -47,6 +48,7 @@ return (
     <ProteinSection />
     <CrunchEraSection />
     <WelcomeSection />
+    <Blog/>
     <CommunitySection />
     <TestimonialsSection />
     <Footer />

@@ -111,10 +111,43 @@ const CrunchEraSection = () => {
 
   return (
     <section className="relative py-16 lg:py-24 bg-[#F8F7E5] overflow-hidden">
-      {/* Tilted background div (desktop only) */}
-      <div className="absolute top-[680px] left-[-150px] w-[1200px] h-[300px] bg-white transform -rotate-[35deg] sm:top-[900px] sm:left-[-200px] sm:w-[2800px] sm:h-[400px] sm:-rotate-[10deg] origin-top-left z-0"></div>
 
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+      {/* Features Section with animation */}
+      <div className="relative w-full py-20 px-6 overflow-hidden z-10 mt-10">
+        {/* Background Image */}
+        <div className="absolute inset-0 -z-10">
+          <img
+            src={pointsBG}
+            alt="Background"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        {/* Features Grid */}
+        <div className="relative z-10 flex flex-wrap items-center justify-center gap-x-10 gap-y-12 md:gap-x-20 md:gap-y-16 max-w-7xl mx-auto">
+          {features.map((feature, index) => (
+            <motion.div
+              key={index}
+              className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left space-y-2 sm:space-y-0 sm:space-x-4 max-w-xs"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ type: "spring", stiffness: 100, damping: 20, duration: 1.2, delay: index * 0.2 }}
+            >
+              <img src={feature.icon} alt={feature.title} className="w-12 h-12" />
+              <div>
+                <h3 className="text-xl font-suez text-[#325DE8]">{feature.title}</h3>
+                <p className="text-[#466DDF] font-jost">{feature.text}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Tilted background div (desktop only) */}
+      <div className="absolute top-[780px] left-[-150px] w-[1200px] h-[300px] bg-white transform -rotate-[35deg] sm:top-[1200px] sm:left-[-200px] sm:w-[2800px] sm:h-[400px] sm:-rotate-[10deg] origin-top-left z-0"></div>
+
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 mt-24">
         
         {/* Main Heading */}
         <div className="text-center mb-12 lg:mb-16">
@@ -292,37 +325,7 @@ const CrunchEraSection = () => {
         </div>
       </div>
 
-      {/* Features Section with animation */}
-      <div className="relative w-full py-20 px-6 overflow-hidden z-10 mt-10">
-        {/* Background Image */}
-        <div className="absolute inset-0 -z-10">
-          <img
-            src={pointsBG}
-            alt="Background"
-            className="w-full h-full object-cover"
-          />
-        </div>
-
-        {/* Features Grid */}
-        <div className="relative z-10 flex flex-wrap items-center justify-center gap-x-10 gap-y-12 md:gap-x-20 md:gap-y-16 max-w-7xl mx-auto">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left space-y-2 sm:space-y-0 sm:space-x-4 max-w-xs"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.3 }}
-              transition={{ type: "spring", stiffness: 100, damping: 20, duration: 1.2, delay: index * 0.2 }}
-            >
-              <img src={feature.icon} alt={feature.title} className="w-12 h-12" />
-              <div>
-                <h3 className="text-xl font-suez text-[#325DE8]">{feature.title}</h3>
-                <p className="text-[#466DDF] font-jost">{feature.text}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+      
     </section>
   );
 };
