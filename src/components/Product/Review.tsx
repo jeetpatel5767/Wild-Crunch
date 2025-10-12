@@ -149,36 +149,7 @@ const Review = () => {
 
           {/* Buttons Side by Side */}
           <div className="flex gap-4">
-            <motion.button 
-              variants={buttonVariants}
-              initial="hidden"
-              animate="visible"
-              transition={{ delay: 0.8 }}
-              whileHover={{
-                scale: 1.05,
-                backgroundColor: "#DD815C",
-                transition: { duration: 0.3 }
-              }}
-              whileTap={{
-                scale: 0.95,
-                transition: { duration: 0.2 }
-              }}
-              className="flex items-center justify-center gap-2 px-8 py-3 bg-black text-white rounded-full font-jost cursor-pointer"
-            >
-              <motion.div
-                animate={{
-                  rotate: [0, 10, -10, 0],
-                  transition: {
-                    repeat: Infinity,
-                    duration: 2,
-                    ease: "easeInOut"
-                  }
-                }}
-              >
-                <Camera size={18} />
-              </motion.div>
-              Add Photo
-            </motion.button>
+           
             <motion.button 
               variants={buttonVariants}
               initial="hidden"
@@ -341,30 +312,7 @@ const Review = () => {
                   }}
                   className="border border-black p-4 bg-white relative flex gap-4 flex-col md:flex-row justify-between cursor-pointer"
                 >
-                  {/* Right Side: Image */}
-                  <motion.div 
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.8 + index * 0.2, duration: 0.6 }}
-                    whileHover={{
-                      scale: 1.05,
-                      transition: { duration: 0.3 }
-                    }}
-                    className="w-52 h-52 border border-black flex items-center justify-center bg-gray-50"
-                  >
-                    <motion.span
-                      animate={{
-                        opacity: [0.5, 1, 0.5],
-                        transition: {
-                          repeat: Infinity,
-                          duration: 2,
-                          ease: "easeInOut"
-                        }
-                      }}
-                    >
-                      Image
-                    </motion.span>
-                  </motion.div>
+
 
                   {/* Left Side: Review Content */}
                   <div className="flex-1 flex flex-col justify-between relative">
